@@ -1,0 +1,17 @@
+[subs="attributes"]
+++++
+<script type="text/javascript">
+    window.addEventListener("load", function() {
+
+        revealDiv = document.querySelector("body div.reveal")
+        footer = document.getElementById("schauderhaft-footer");
+        revealDiv.appendChild(footer);
+
+    } );
+</script>
+<div id="schauderhaft-footer" class="footer">
+    <span class="element">{twitter-tag}</span>
+    <span class="element">{conference-tag}</span>
+    <span class="element">{talk-tag}</span>
+</div>
+++++

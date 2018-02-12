@@ -1,0 +1,56 @@
+= Template slide
+:revealjs_customtheme: theme/schauderhaft.css
+:icons: font
+:twitter-tag: @jensschauder
+:conference-tag: @jugka
+:talk-tag: #communication
+:slide-link: http://bit.ly/jsch-comm
+:linkattrs:
+
+include::footer.ad[]
+
+== section title
+
+== !
+
+image::no.jpg[background, size=contain]
+
+=== Quote
+
+[quote]
+Komm wir essen Opa
+
+[quote]
+Ok, ich hole das Beil
+
+[NOTE.speaker]
+====
+This is a speaker note
+====
+
+== Resourcen
+
+++++
+<div class="reference"><a href="http://amzn.to/2xniDmq">7 Habits Of Highly Effective People <br> Stephen R Covey - http://amzn.to/2xniDmq</a>
+</div><div class="reference"><a href="http://amzn.to/2wzojgf">Das Corssen-Prinzip Jens Corssen - http://amzn.to/2wzojgf</a>
+</div><div class="reference"><a href="http://amzn.to/2x83XIH">An Astronaut's Guide to Life on Earth <br> Chris Hadfield - http://amzn.to/2x83XIH</a>
+</div><div class="reference"><a href="http://amzn.to/2wjgThz">Auf dem Kreuzzug ins Glück <br> Die Toten Hosen - http://amzn.to/2wjgThz</a>
+</div><div class="reference"><a href="https://www.youtube.com/watch?v=5J6jAC6XxAI">Tim Ferris http://bit.ly/timFerris</a>
+</div><div class="reference"><a href="http://amzn.to/2v0IUdI">Denken hilft zwar, nützt aber nichts <br> Dan Ariely - http://amzn.to/2v0IUdI</a>
+</div><div class="reference"><a href="http://amzn.to/2xmX31N">Thinking Fast and Slow <br> Daniel Kahneman - http://amzn.to/2xmX31N</a>
+</div>
+++++
+
+== Resourcen
+
+++++
+<div class="reference"><a href="http://amzn.to/2x7NGn3">Just Listen Mark Goulston - http://amzn.to/2x7NGn3</a>
+</div><div class="reference"><a href="http://amzn.to/2g0assW">Difficult Conversations Douglas Stone - http://amzn.to/2g0assW</a>
+</div><div class="reference"><a href="http://inews.co.uk/opinion/comment/i-deal-nasty-comments-online/">Frau begegnet Hasskomentaren mit freundlichem Nachfragen <br> bit.ly/hatecomments</a>
+</div><div class="reference"><a href="http://www.huffingtonpost.com/entry/black-man-daryl-davis-befriends-kkk-documentary-accidental-courtesy_us_585c250de4b0de3a08f495fc">Schwarzer freundet sich mit Klansmen an <br> http://bit.ly/befriendKKK</a>
+</div><div class="reference"><a href="https://blog.codinghorror.com/how-to-talk-to-human-beings/">How to talk to human beings <br> Jeff Atwood - http://bit.ly/talk2humans/</a>
+</div><div class="reference"><a href="http://theoatmeal.com/comics/believe">The Oatmeal http://theoatmeal.com/comics/believe</a>
+</div>
+++++
+
+include::self.ad[]

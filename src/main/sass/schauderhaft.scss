@@ -1,0 +1,214 @@
+/**
+ * schauderhaft theme for reveal.js
+ * Author: Jens Schauder http://blog.schauderhaft.de/_pages/ueber-jens-schauder/
+ *
+ * background pattern from https://subtlepatterns.com/skin-side-up/*
+ */
+// Default mixins and settings -----------------
+@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/mixins.scss";
+@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/settings.scss";
+// ---------------------------------------------
+// Include theme-specific fonts
+//@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Roboto:100,300|Roboto+Mono&subset=latin-ext');
+
+/* amatic-sc-regular - latin */
+@font-face {
+  font-family: 'Amatic SC';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Amatic SC Regular'), local('AmaticSC-Regular'),
+  url('fonts/amatic-sc-v9-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('fonts/amatic-sc-v9-latin-regular.woff') format('woff') /* Modern Browsers */
+}
+
+/* roboto-100 - latin_latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local('Roboto Thin'), local('Roboto-Thin'),
+  url('fonts/roboto-v15-latin_latin-ext-100.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('fonts/roboto-v15-latin_latin-ext-100.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-300 - latin_latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'),
+  url('fonts/roboto-v15-latin_latin-ext-300.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('fonts/roboto-v15-latin_latin-ext-300.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-mono-regular - latin_latin-ext */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'),
+  url('fonts/roboto-mono-v4-latin_latin-ext-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+  url('fonts/roboto-mono-v4-latin_latin-ext-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+// brown palette
+// Palette URL: http://paletton.com/#uid=10r1c0k4k6y3rmL3+fcd24Nlz4Y */
+$color-primary-0: #34302D; // Main Primary color */
+$color-primary-1: #B5AAA2;
+$color-primary-2: #79706A;
+$color-primary-3: #261D17;
+$color-primary-4: #28180D;
+
+// green palette
+// Palette URL: http://paletton.com/#uid=12D1c0kkKp-7yIPeOv0pvlbvxfx */
+$color-secondary-0: #6DB33F; // Main Primary color */
+$color-secondary-1: #CCEDB6;
+$color-secondary-2: #9CD975;
+$color-secondary-3: #4D941E;
+$color-secondary-4: #2C6D02;
+
+$backgroundColor: $color-primary-1;
+
+$codeBackground: $backgroundColor;
+
+// Main text
+$mainFont: Roboto, sans-serif;
+$mainFontSize: 48px;
+$mainColor: $color-primary-0;
+
+// Headings
+$headingFont: Roboto, sans-serif;
+$headingTextShadow: 5px 5px 5px $color-primary-1;
+$headingColor: $color-primary-0;
+$headingTextTransform: none;
+
+$heading1Size: 2.8em;
+$heading2Size: 1.6em;
+$heading3Size: 1.2em;
+$heading4Size: 1.00em;
+
+// Links
+$linkColor: $color-secondary-0;
+$linkColorHover: lighten($linkColor, 20%);
+
+// Text selection
+$selectionBackgroundColor: $color-secondary-1;
+$selectionColor: $color-primary-0;
+
+// Theme template ------------------------------
+@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/theme";
+// ---------------------------------------------
+
+// some overrides after theme template import
+
+.reveal p {
+  font-weight: 300;
+  text-shadow: 2px 2px 2px $color-primary-1;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  font-weight: 100;
+}
+
+.reveal p code {
+  background-color: $codeBackground;
+  background-image: none;
+  display: inline-block;
+  border-radius: 7px;
+  font-family: "Roboto Mono", monospace;
+}
+
+.reveal small code {
+  vertical-align: baseline;
+}
+
+.reveal pre {
+  width: 100%
+}
+
+.reveal pre code {
+  font-family: "Roboto Mono", monospace;
+  font-size: .8 * $mainFontSize;
+  line-height: 1.3;
+  max-height: 480px;
+}
+
+body {
+  // pattern from https://subtlepatterns.com/skin-side-up/
+  background-image: url('images/skin_side_up.png');
+}
+
+.reveal .attribution {
+  font-size: 50%;
+}
+
+section[data-background-size] h2 {
+  background: rgba($color-secondary-2, 0.5);
+  box-shadow: 0 0 5px rgba($color-primary-1, 0.5);
+  text-shadow: none;
+}
+
+section[data-background-size] img {
+  display: none;
+}
+
+
+section[data-background-size] {
+  top: initial !important;
+}
+
+.line-through{
+  text-decoration: line-through;
+}
+
+.reveal strong {
+  font-family: 'Amatic SC';
+  font-size: 120%;
+}
+
+.footer {
+  position: absolute;
+  display: table;
+  width: 100%;
+  bottom: 0;
+
+  color: $color-primary-2;
+}
+
+.footer span {
+  display: table-cell;
+  padding: 0px 15px 5px;
+
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: 70%;
+}
+
+.footer span:nth-of-type(1) {
+  text-align: left;
+}
+.footer span:nth-last-child(1) {
+  text-align: right;
+}
+
+section[data-background-size] .footer span {
+  display: none;
+}
+
+.reveal section.credits div {
+  font-size: 60%;
+  text-align: left;
+  padding-left: 1.5em;
+  text-indent:-1.5em;
+}
+
+.reveal section div.reference {
+  text-align: left;
+  margin-bottom: 10px;
+  font-size: 60%;
+}
