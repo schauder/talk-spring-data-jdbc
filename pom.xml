@@ -106,6 +106,7 @@
                                 <revealjs_theme>black</revealjs_theme>
                                 <revealjs_transition>linear</revealjs_transition>
                                 <project-version>${project.version}</project-version>
+	                            <revealjs_history>true</revealjs_history>
                             </attributes>
                         </configuration>
                     </execution>
