@@ -39,8 +39,14 @@ Nothing promised.
 
 upserts?
 
+=== Derived Queries
+
+=== Paging
+
 === Named Queries with MyBatis
 
-=== Name Queryies via Properties
+=== Named Queryies via Properties
+
+=== Spring Boot Support
 
 include::self.ad[]
