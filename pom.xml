@@ -23,6 +23,50 @@
         <theme.dir>${project.slides.directory}/theme</theme.dir>
     </properties>
 
+	<dependencies>
+		<dependency>
+		<!-- tag::sdjdbc[] -->
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jdbc</artifactId>
+			<version>1.0.0.DATAJDBC-155-SNAPSHOT</version>
+		<!-- end::sdjdbc[] -->
+		</dependency>
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.18</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>5.0.2.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.assertj</groupId>
+			<artifactId>assertj-core</artifactId>
+			<version>3.9.1</version>
+		</dependency>
+	</dependencies>
+
     <build>
         <defaultGoal>process-resources</defaultGoal>
         <plugins>
@@ -101,8 +145,8 @@
                                     As we are downloading reveal.js in runtime, it sits in a nonstandard folder `reveal.js-${revealjs.version}`
                                 -->
                                 <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
+	                            <src-incl>${project.basedir}/</src-incl>
                                 <!-- put here the reveal.js specific attributes -->
-                                <sourcedir>${basedir}/src/main/java</sourcedir>
 	                            <revealjs_customtheme>${theme.dir}/schauderhaft.css</revealjs_customtheme>
 	                            <revealjs_transition>linear</revealjs_transition>
                                 <project-version>${project.version}</project-version>
@@ -171,6 +215,14 @@
 				        </configuration>
 			        </execution>
 		        </executions>
+	        </plugin>
+	        <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-compiler-plugin</artifactId>
+		        <configuration>
+			        <source>1.8</source>
+			        <target>1.8</target>
+		        </configuration>
 	        </plugin>
         </plugins>
     </build>
