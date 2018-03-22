@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.schauderhaft</groupId>
-    <artifactId>talk-parent-mvn</artifactId>
+    <artifactId>talk-spring-data-jdbc</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Parent project for talks done by Jens Schauder</name>
-    <description>Parent project for talks done by Jens Schauder
+    <name>Spring Data Jdbc Talk</name>
+    <description>Slides for a talk introducing Spring Data Jdbc
     </description>
 
     <properties>
