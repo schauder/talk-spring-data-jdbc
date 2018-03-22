@@ -1,0 +1,50 @@
+= Parent Project for my talks.
+
+Originally intended as a parent module it is currently more of a template for slides written in AsciiDoc and rendered using Reveal.js.
+
+== How to use
+
+* Copy the project.
+* Edit the `pom.xml`.
+    You probably want to change
+    * `artefactId`
+    * `name`
+    * `description`
+    * and if you are not me also the `groupid`
+* start editing `src/main/asciidoc/talk.ad`
+* run `mvn clean package && open docs/talk.html`
+
+Note that the slides get copied in the `docs` folder.
+You can push that onto GitHub and use GitHub pages to make it available to everybody.
+
+Of course, again if you are not me, you might want to tweak the theme, `self.ad` and all kinds of things.
+
+== Rational
+
+If you do talks often you might know the situation:
+There are a dozen variations of the same talks sitting in a directory.
+And you have no idea what the differences are and on which one you should base the next presentation.
+
+As software developers we know a solution to this: Version Control.
+
+But this means Power Point doesn't really work.
+Also it is a pain in the ass to begin with.
+Keynote is supposed to be better, but I already decided on a different tool when I started working on a Mac.
+
+My tool of choice is Reveal.js created from AsciiDoc.
+This has a couple of benefits:
+
+* My slides have the same style all the time
+* I can create my slides in a text editor or my IDE
+* I can properly use tools like diff
+
+Of course there are also drawbacks:
+
+* Many things that should be easy aren't
+* There is now a whole shopping list of technologies to deal with
+
+I solve this with a build tool.
+I started with Gradle but since I almost exclusively work with Maven at my job I switched to Maven.
+
+The result is this repository.
+It is the basis for my current and upcoming talks.
