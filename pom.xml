@@ -103,10 +103,12 @@
                                 <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
                                 <!-- put here the reveal.js specific attributes -->
                                 <sourcedir>${basedir}/src/main/java</sourcedir>
-                                <revealjs_theme>black</revealjs_theme>
-                                <revealjs_transition>linear</revealjs_transition>
+	                            <revealjs_customtheme>${theme.dir}/schauderhaft.css</revealjs_customtheme>
+	                            <revealjs_transition>linear</revealjs_transition>
                                 <project-version>${project.version}</project-version>
 	                            <revealjs_history>true</revealjs_history>
+	                            <revealjs_width>1280</revealjs_width>
+	                            <revealjs_height>720</revealjs_height>
                             </attributes>
                         </configuration>
                     </execution>
@@ -148,6 +150,22 @@
 							        <excludes>
 								        <exclude>*.scss</exclude>
 							        </excludes>
+						        </resource>
+					        </resources>
+				        </configuration>
+			        </execution>
+			        <execution>
+				        <id>copy-to-docs</id>
+				        <phase>package</phase>
+				        <goals>
+					        <goal>copy-resources</goal>
+				        </goals>
+				        <configuration>
+					        <outputDirectory>${project.basedir}/docs</outputDirectory>
+					        <resources>
+						        <resource>
+							        <directory>${project.slides.directory}</directory>
+							        <filtering>false</filtering>
 						        </resource>
 					        </resources>
 				        </configuration>
