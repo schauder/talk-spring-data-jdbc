@@ -5,6 +5,9 @@
 :talk-tag: #sd-jdbc
 :slide-link: to be defined
 :linkattrs:
+:main-incl: {src-incl}/src/main/java/de/schauderhaft/spring/data/jdbc/talk/
+:test-incl: {src-incl}/src/test/java/de/schauderhaft/spring/data/jdbc/talk/
+:res-incl: {src-incl}/src/main/resources/
 
 include::footer.ad[]
 
@@ -16,7 +19,90 @@ include::footer.ad[]
 
 == CrudRepository
 
+=== Dependencies
+
+=== !
+
+[source, xml, indent=0, tabsize=2]
+----
+include::{src-incl}pom.xml[tags=sdjdbc]
+----
+
+=== The usual suspects
+
+* hsqldb
+* lombok
+* junit
+* spring-test
+* org.assertj
+* assertj-core
+
+=== Configuration
+
+=== !
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=main]
+----
+
+=== Entity
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}Workout.java[tags=main]
+----
+
+=== Entity
+
+All you need is an `@Id`
+
+* getters/setters are optional
+
+* default constructor is optional
+
+=== Repository
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}WorkoutRepository.java[tags=main]
+----
+
+=== Schema
+
+[source, sql, indent=0, tabsize=2]
+----
+include::{res-incl}schema.sql[]
+----
+
+=== Create, Read
+
+[source, java, indent=0, tabsize=2]
+----
+include::{test-incl}SpringleticsTest.java[tags=create]
+----
+
+=== Update, Delete
+
+[source, java, indent=0, tabsize=2]
+----
+include::{test-incl}SpringleticsTest.java[tags=update]
+----
+
+=== Log Output
+
+[source,sql]
+----
+insert into Workout (name, focus) values (?, ?)
+SELECT Workout.id AS id, Workout.name AS name, Workout.focus AS focus
+       FROM Workout WHERE Workout.id = ?
+update Workout set id = ?, name = ?, focus = ? where id = ?
+DELETE from Workout where id = ?
+----
+
 === NamingStrategy
+
+
 
 == MyBatis
 
