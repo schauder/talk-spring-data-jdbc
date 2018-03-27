@@ -102,7 +102,25 @@ DELETE from Workout where id = ?
 
 === NamingStrategy
 
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=naming]
+----
 
+=== Dynamic NamingStrategy
+
+[source, java, indent=0, tabsize=2]
+----
+	private final ThreadLocal<String> schema = new ThreadLocal<>();
+
+	new NamingStrategy() {
+
+		@Override
+		public String getSchema() {
+			return schema.get();
+		}
+	};
+----
 
 == MyBatis
 
