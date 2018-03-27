@@ -28,7 +28,7 @@
 		<!-- tag::sdjdbc[] -->
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jdbc</artifactId>
-			<version>1.0.0.DATAJDBC-155-SNAPSHOT</version>
+			<version>1.0.0.BUILD-SNAPSHOT</version>
 		<!-- end::sdjdbc[] -->
 		</dependency>
 		<dependency>
