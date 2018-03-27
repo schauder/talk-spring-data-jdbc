@@ -17,15 +17,11 @@ package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jdbc.mapping.model.JdbcPersistentProperty;
 import org.springframework.data.jdbc.mapping.model.NamingStrategy;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-
-import java.util.HashMap;
-import java.util.Map;
 
 // tag::main[]
 @Configuration
@@ -41,30 +37,5 @@ public class SpringleticsConfiguration {
 						.build());
 	}
 	// end::main[]
-
-	// tag::naming[]
-	@Bean
-	public NamingStrategy namingStrategy() {
-		return new PrefixNamingStrategy();
-	}
-
-	private static class PrefixNamingStrategy implements NamingStrategy {
-		private Map<Class, String> columnPrefix = new HashMap<>();
-
-		{columnPrefix.put(Workout.class, "WO");	}
-
-		@Override
-		public String getColumnName(JdbcPersistentProperty property) {
-			return columnPrefix.get(property.getOwner().getType())
-					+ "_"
-					+ NamingStrategy.super.getColumnName(property);
-		}
-
-		@Override
-		public String getTableName(Class<?> type) {
-			return "T_" + NamingStrategy.super.getTableName(type);
-		}
-	}
-// end::naming[]
 }
 
