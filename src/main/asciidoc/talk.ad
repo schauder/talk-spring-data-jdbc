@@ -13,9 +13,59 @@ include::footer.ad[]
 
 == Spring Data
 
-== Spring Data Jdbc
+* Consistent Programming Model for data access.
 
-== SDJ vs JPA
+* Inspired by DDD
+
+* Modules for JPA, Mongo, Cassandra, Neo4j ...
+
+* Repository Abstraction
+
+== Spring Data Jdbc vs JPA
+
+Pick, Spade and Fork
+
+vs
+
+Mähdrescher
+
+=== JPAs complexity
+
+* Lazy Loading (Exception)
+
+* Dirty Checking
+
+* Session / 1st Level Cache
+
+* Proxies for Entities
+
+* You can map anything
+
+=== Design Choices
+
+* No Lazy Loading
+
+* No Caching
+
+* No Proxies
+
+* No deferred flushing
+
+* Very simple & limited ORM
+
+=== Simplicity is King
+
+Complexity is tempting
+
+=== Consider SDJ if you
+
+* want to custom code most SQL anyway
+
+* find yourself fighting JPA
+
+* want to have DDD Aggregates
+
+(but still want to use a RDBMS)
 
 == CrudRepository
 
@@ -34,8 +84,7 @@ include::{src-incl}pom.xml[tags=sdjdbc]
 * lombok
 * junit
 * spring-test
-* org.assertj
-* assertj-core
+* assertj
 
 === Configuration
 
@@ -122,6 +171,130 @@ include::{main-incl}SpringleticsConfiguration.java[tags=naming]
 	};
 ----
 
+== Non trivial Aggregates
+
+=== Design Challenge
+
+CRUD Operations for entities with references
+
+aka ORM
+
+=== Springletics Workout
+
+[source,java]
+----
+classWorkout {
+    // ...
+    List<Exercise> exercises
+    // ...
+}
+----
+
+=== Pseudo Code
+
+[source,pseudo]
+----
+wo = createWorkout();
+wo = repository.save(wo);
+wo = changeWorkout(wo);
+repository.save(wo);
+----
+
+=== SQL Statments
+
+
+[source,sql]
+----
+// first save
+insert into Workout (name, focus) values (?, ?)
+insert into Exercise (name, description, Workout, Workout_key) values (?, ?, ?, ?)
+
+// second save
+DELETE FROM Exercise WHERE Workout = ?
+update Workout set id = ?, name = ?, focus = ? where id = ?
+insert into Exercise (name, description, Workout, Workout_key) values (?, ?, ?, ?)
+----
+
+=== WAT?
+
+* **DELETE ALL referenced Entities!**
+
+* UPDATE Aggregate Root
+
+* REINSERT ALL referenced Entities
+
+=== What will improve
+
+* DELETE ALL formerly referenced Entities
+
+* UPDATE Aggregate Root
+
+* UPDATE still referenced Entities
+
+* INSERT new Entities
+
+== No Many-to-X relations!
+
+=== Repositories work on Aggregates
+
+[quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
+____
+Aggregates are the basic element of transfer of data storage - you request to load or save whole aggregates.
+____
+
+=== Aggregate
+
+[quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
+____
+
+Aggregate is a pattern in Domain-Driven Design.
+A DDD aggregate is a cluster of domain objects that can be treated as a single unit.
+____
+
+=== Aggregate Root
+
+[quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
+____
+
+An aggregate will have one of its component objects be the aggregate root.
+Any references from outside the aggregate should only go to the aggregate root.
+The root can thus ensure the integrity of the aggregate as a whole.
+____
+
+=== Many to X relations
+
+If multiple Aggregate roots reference X, X must be another Aggregate Root.
+
+=> Not part of this Aggregate.
+
+=== What is part of the Aggregate?
+
+Everything referenced.
+
+=== What to do
+
+* Just reference an id.
+
+=== But I don't like that!
+
+* That's ok.
+
+Use
+
+* `@Query`
+
+* Custom method implementations
+
+* Custom base repository
+
+=== Just consider for a moment
+
+* It is a strong constraint
+
+* It might improve your architecture
+
+== Events
+
 == MyBatis
 
 == `@Query`
@@ -130,7 +303,6 @@ include::{main-incl}SpringleticsConfiguration.java[tags=naming]
 
 === RowMapper
 
-== Events
 
 == Integration with SD-Rest
 
