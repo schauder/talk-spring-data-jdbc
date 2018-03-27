@@ -15,10 +15,11 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk;
 
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jdbc.mapping.model.NamingStrategy;
+import org.springframework.data.jdbc.mapping.event.BeforeSave;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -39,5 +40,6 @@ public class SpringleticsConfiguration {
 						.build());
 	}
 	// end::main[]
+
 }
 
