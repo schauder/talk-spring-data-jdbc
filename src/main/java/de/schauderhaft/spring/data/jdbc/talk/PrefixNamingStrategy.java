@@ -17,13 +17,17 @@ package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.data.jdbc.mapping.model.JdbcPersistentProperty;
 import org.springframework.data.jdbc.mapping.model.NamingStrategy;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Example for a NamingStrategy using prefixes for table and column names.
+ *
  * @author Jens Schauder
  */
+@Component
 // tag::naming[]
 class PrefixNamingStrategy implements NamingStrategy {
 	private Map<Class, String> columnPrefix = new HashMap<>();

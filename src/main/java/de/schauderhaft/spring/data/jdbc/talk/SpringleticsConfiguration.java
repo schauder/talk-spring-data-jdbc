@@ -16,6 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.mapping.model.NamingStrategy;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
@@ -25,6 +26,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 // tag::main[]
 @Configuration
+@ComponentScan
 @EnableJdbcRepositories
 public class SpringleticsConfiguration {
 
