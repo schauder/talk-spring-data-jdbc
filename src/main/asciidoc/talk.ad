@@ -153,7 +153,7 @@ DELETE from Workout where id = ?
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}SpringleticsConfiguration.java[tags=naming]
+include::{main-incl}PrefixNamingStrategy.java[tags=naming]
 ----
 
 === Dynamic NamingStrategy
