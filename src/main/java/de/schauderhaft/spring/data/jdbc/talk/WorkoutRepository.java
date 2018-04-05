@@ -15,12 +15,52 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk;
 
+import org.springframework.data.jdbc.repository.query.Modifying;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author Jens Schauder
  */
 // tag::main[]
 public interface WorkoutRepository
-		extends CrudRepository<Workout, Long> {}
+		extends CrudRepository<Workout, Long>
 // end::main[]
+{
+	// tag::query[]
+	@Query("SELECT * FROM T_WORKOUT WHERE WO_NAME like '%' || :name || '%'")
+	List<Workout> findByName(@Param("name") String name);
+    // end::query[]
+
+	// tag::modifying[]
+	@Modifying
+	@Query("DELETE FROM T_WORKOUT WHERE WO_NAME like '%' || :name || '%'")
+	Long deleteByName(@Param("name") String name);
+    // end::modifying[]
+
+
+	// tag::rowmapper1[]
+	@Query(value = "VALUES ('Dummy-Workout')",
+			rowMapperClass = DummyRowMapper.class)
+	Workout wonkyWorkout();
+    // end::rowmapper1[]
+
+	// tag::rowmapper2[]
+	class DummyRowMapper implements RowMapper<Workout> {
+		@Override
+		public Workout mapRow(ResultSet rs, int rowNum)
+				throws SQLException {
+
+			Workout workout = new Workout();
+			workout.name = rs.getString(1);
+			return workout;
+		}
+	}
+	// end::rowmapper2[]
+}
