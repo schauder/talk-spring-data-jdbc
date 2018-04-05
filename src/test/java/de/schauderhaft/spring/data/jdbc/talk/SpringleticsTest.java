@@ -63,4 +63,24 @@ public class SpringleticsTest {
 		assertThat(repository.findById(saved.id)
 				.isPresent()).isFalse();
 	}
+
+	@Test
+	public void demonstrateQuery(){
+
+ 		Workout workout = new Workout();
+		workout.name = "Aphrodite";
+		workout.focus = Focus.ENDURANCE;
+
+		repository.save(workout);
+
+		assertThat(repository.findByName("rod"))
+				.hasSize(1);
+		assertThat(repository.deleteByName("rod")).isEqualTo(1);
+		assertThat(repository.deleteByName("rod")).isEqualTo(0);
+	}
+
+	@Test
+	public void demonstrateCustomRowMapper(){
+		assertThat(repository.wonkyWorkout().name).isEqualTo("Dummy-Workout");
+	}
 }
