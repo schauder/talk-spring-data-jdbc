@@ -1,0 +1,5 @@
+# list all workouts
+curl localhost:8080/workouts
+
+curl -X POST -H "Content-Type: application/json" -d '{"name":"first workout"}' localhost:8080/workouts
+

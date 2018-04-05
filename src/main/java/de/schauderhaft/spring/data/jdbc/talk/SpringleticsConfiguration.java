@@ -43,7 +43,7 @@ public class SpringleticsConfiguration {
 	public DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
-				.addScript("schema.sql")
+				.addScript("create-schema.sql")
 				.build();
 	}
 
