@@ -232,7 +232,7 @@ insert into Exercise (name, description, Workout, Workout_key) values (?, ?, ?, 
 
 * INSERT new Entities
 
-== No Many-to-X relations!
+== => No Many-to-X relations!
 
 === Repositories work on Aggregates
 
@@ -262,7 +262,9 @@ ____
 
 === Many to X relations
 
-If multiple Aggregate roots reference X, X must be another Aggregate Root.
+If multiple Aggregate roots reference X,
+
+X must be another Aggregate Root.
 
 => Not part of this Aggregate.
 
@@ -303,16 +305,16 @@ include::{main-incl}BeforeSaveListener.java[tags=main]
 
 === Available Events
 
-* `AfterCreation` - when an Aggregate got instantiated from the database
-* `AfterDelete`
+* `BeforeSave`
 * `AfterSave`
 * `BeforeDelete`
-* `BeforeSave`
+* `AfterDelete`
+* `AfterCreation` - when an Aggregate got instantiated from the database
 
 === `AggregateChange`
 
 * A model of the changes to be applied to the database
-* contains a **mutable** list of `DbAction`s.
+* contains a **mutable** list of `DbAction` s.
 
 === `DbAction`
 
@@ -322,16 +324,56 @@ Represents a single SQL statement to be executed against the database.
 
 * Access the repository
 * change the entities
-* **Change the** `AggregateChange`!
+* **Change** the `AggregateChange`!
 
 == MyBatis
+
+=== Dependencies
+
+[source, xml, indent=0, tabsize=2]
+----
+include::{src-incl}pom.xml[tags=mybatis]
+----
+
+=== Context
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=mybatis1]
+----
+
+=== Context
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=mybatis2]
+----
+
+=== Context
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=mybatis3]
+----
+
+=== Mapping
+
+[source, xml, indent=0, tabsize=2]
+----
+include::{src-incl}src/main/resources/de/schauderhaft/spring/data/jdbc/talk/WorkoutMapper.xml[]
+----
+
+=== Thanks!
+
+**Kazuki Shimizu**
+
+kazuki43zoo
 
 == `@Query`
 
 === `@Modifying`
 
 === RowMapper
-
 
 == Integration with SD-Rest
 
