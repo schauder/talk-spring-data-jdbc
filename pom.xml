@@ -8,7 +8,12 @@
     <name>Spring Data Jdbc Talk</name>
     <description>Slides for a talk introducing Spring Data Jdbc
     </description>
-
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.0.RELEASE</version>
+		<relativePath></relativePath>
+	</parent>
     <properties>
         <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,6 +67,17 @@
 		</dependency>
 		<!-- end::mybatis[] -->
 
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -77,6 +93,11 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>3.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-autoconfigure</artifactId>
+			<version>2.0.0.BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

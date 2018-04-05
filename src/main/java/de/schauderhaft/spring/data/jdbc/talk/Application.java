@@ -15,22 +15,13 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk;
 
-import lombok.Data;
-import lombok.Value;
-import org.springframework.data.annotation.Id;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Domain class representing a workout
- *
- * @author Jens Schauder
- */
-@Data
-// tag::main[]
-public class Workout {
+@SpringBootApplication
+public class Application {
 
-	@Id
-	Long id;
-	String name;
-	Focus focus;
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 }
-// end::main[]
