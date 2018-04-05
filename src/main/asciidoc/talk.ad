@@ -399,9 +399,17 @@ include::{main-incl}WorkoutRepository.java[tags=rowmapper2]
 
 == Integration with SD-Rest
 
+Make it a bootiful Webapplication
+
+=== Spring Data JDBC specific
+
+Almost nothing.
+
+Entities need to be Beans for JSON serializer.
+
 == (Maybe) upcoming
 
-Nothing promised.
+Not promising anything.
 
 === Auditing
 
@@ -411,14 +419,22 @@ upserts?
 
 === Derived Queries
 
-=== Paging
+=== Sorting and Paging
 
 === Named Queries with MyBatis
 
 === Named Queryies via Properties
 
-=== References
-
 === Spring Boot Support
+
+PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
+
+== References
+
+Github: https://github.com/spring-projects/spring-data-jdbc
+
+Project: https://projects.spring.io/spring-data-jdbc/
+
+Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
 
 include::self.ad[]
