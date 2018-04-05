@@ -371,9 +371,31 @@ kazuki43zoo
 
 == `@Query`
 
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}WorkoutRepository.java[tags=query]
+----
+
 === `@Modifying`
 
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}WorkoutRepository.java[tags=modifying]
+----
+
 === RowMapper
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}WorkoutRepository.java[tags=rowmapper1]
+----
+
+=== RowMapper
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}WorkoutRepository.java[tags=rowmapper2]
+----
 
 == Integration with SD-Rest
 
