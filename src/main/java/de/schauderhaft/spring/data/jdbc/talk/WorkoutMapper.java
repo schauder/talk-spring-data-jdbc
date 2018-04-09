@@ -18,5 +18,5 @@ package de.schauderhaft.spring.data.jdbc.talk;
 /**
  * @author Jens Schauder
  */
-interface WorkoutMapper {
+public interface WorkoutMapper {
 }

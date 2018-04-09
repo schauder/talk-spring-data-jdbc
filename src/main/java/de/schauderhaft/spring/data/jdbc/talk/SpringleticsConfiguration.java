@@ -15,17 +15,9 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jdbc.core.DataAccessStrategy;
-import org.springframework.data.jdbc.mapping.model.JdbcMappingContext;
-import org.springframework.data.jdbc.mybatis.MyBatisContext;
-import org.springframework.data.jdbc.mybatis.MyBatisDataAccessStrategy;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -52,43 +44,5 @@ public class SpringleticsConfiguration {
 		return new NamedParameterJdbcTemplate(db);
 	}
 	// end::main[]
-
-	// tag::mybatis1[]
-	@Bean
-	SqlSessionFactoryBean sessionFactory(DataSource db) {
-
-		org.apache.ibatis.session.Configuration config =
-				new org.apache.ibatis.session.Configuration();
-		config.getTypeAliasRegistry()
-				.registerAlias("MyBatisContext", MyBatisContext.class);
-
-		config.getTypeAliasRegistry().registerAlias(Workout.class);
-		config.addMapper(WorkoutMapper.class);
-
-		SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-		bean.setDataSource(db);
-		bean.setConfiguration(config);
-
-		return bean;
-	}
-	// end::mybatis1[]
-
-	// tag::mybatis2[]
-	@Bean
-	SqlSessionTemplate session(SqlSessionFactory factory) {
-		return new SqlSessionTemplate(factory);
-	}
-	// end::mybatis2[]
-
-	// tag::mybatis3[]
-	@Bean
-	DataAccessStrategy dataAccessStrategy(
-			JdbcMappingContext context,
-			SqlSession sqlSession
-	) {
-		return MyBatisDataAccessStrategy
-				.createCombinedAccessStrategy(context, sqlSession);
-	}
-	// tag::mybatis3[]
 }
 
