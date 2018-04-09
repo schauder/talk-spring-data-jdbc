@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
+package de.schauderhaft.spring.data.jdbc.talk;
 
 import de.schauderhaft.spring.data.jdbc.talk.Focus;
 import de.schauderhaft.spring.data.jdbc.talk.SpringleticsConfiguration;
 import de.schauderhaft.spring.data.jdbc.talk.Workout;
 import de.schauderhaft.spring.data.jdbc.talk.WorkoutRepository;
+import de.schauderhaft.spring.data.jdbc.talk.namingstrategy.WithPrefixesConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

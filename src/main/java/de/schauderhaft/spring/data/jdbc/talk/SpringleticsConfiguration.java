@@ -36,6 +36,7 @@ public class SpringleticsConfiguration {
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
 				.addScript("create-schema.sql")
+				.generateUniqueName(true)
 				.build();
 	}
 
