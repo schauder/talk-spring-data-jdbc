@@ -124,12 +124,10 @@ of course you can pick what ever you want.</p></div></aside></section><section i
         .addScript(<span class="string"><span class="delimiter">&quot;</span><span class="content">create-schema.sql</span><span class="delimiter">&quot;</span></span>)
         .generateUniqueName(<span class="predefined-constant">true</span>)
         .build();
-  }
-
-  <span class="annotation">@Bean</span>
-  <span class="directive">public</span> NamedParameterJdbcTemplate namedParameterJdbcTemplate(<span class="predefined-type">DataSource</span> db) {
-    <span class="keyword">return</span> <span class="keyword">new</span> NamedParameterJdbcTemplate(db);
-  }</code></pre></div></div>
+  }</code></pre></div></div></section><section id="_configuration_template"><h2>Configuration (Template)</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="directive">public</span> NamedParameterJdbcTemplate namedParameterJdbcTemplate(<span class="predefined-type">DataSource</span> db) {
+  <span class="keyword">return</span> <span class="keyword">new</span> NamedParameterJdbcTemplate(db);
+}</code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>You just need a <code>NamedParameterjdbcTemplate</code> but we&#8217;ll need the separate <code>DataSource</code> later on.</p></div>
 <div class="paragraph"><p><code>@EnableJdbcRepositories</code> finds and create repository interfaces</p></div></aside></section><section id="_entity"><h2>Entity</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">class</span> <span class="class">Workout</span> {
 
@@ -163,7 +161,7 @@ repository.deleteById(saved.id);</code></pre></div></div></section><section id="
 <span class="class">UPDATE</span> Workout <span class="class">set</span> id = <span class="error">?</span>, name = <span class="error">?</span>, focus = <span class="error">?</span> <span class="keyword">where</span> id = <span class="error">?</span>
 <span class="class">DELETE</span> <span class="keyword">FROM</span> Workout <span class="keyword">where</span> id = <span class="error">?</span></code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>All statements get executed during the matching method call.
-No caching or anything.</p></div></aside></section><section id="_methods_in_crudrepository"><h2>Methods in CrudRepository</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">&lt;S <span class="directive">extends</span> T&gt; S save(S entity);
+No caching or anything.</p></div></aside></section><section id="_methods_in_crudrepository"><h2>Methods in CrudRepository</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">&lt;S <span class="directive">extends</span> T&gt; S save(S entity);
 &lt;S <span class="directive">extends</span> T&gt; <span class="predefined-type">Iterable</span>&lt;S&gt; saveAll(<span class="predefined-type">Iterable</span>&lt;S&gt; entities);
 Optional&lt;T&gt; findById(ID id);
 <span class="type">boolean</span> existsById(ID id);
@@ -174,7 +172,7 @@ Optional&lt;T&gt; findById(ID id);
 <span class="type">void</span> delete(T entity);
 <span class="type">void</span> deleteAll(<span class="predefined-type">Iterable</span>&lt;? <span class="directive">extends</span> T&gt; entities);
 <span class="type">void</span> deleteAll();</code></pre></div></div></section></section>
-<section><section id="_namingstrategy" data-background-image="images/name.png" data-background-size="contain"><h2>NamingStrategy</h2></section><section id="_prefixnamingstrategy"><h2>PrefixNamingStrategy</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="type">class</span> <span class="class">PrefixNamingStrategy</span> <span class="directive">implements</span> NamingStrategy {
+<section><section id="_namingstrategy" data-background-image="images/name.png" data-background-size="contain"><h2>NamingStrategy</h2></section><section id="_prefixnamingstrategy"><h2>PrefixNamingStrategy</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="type">class</span> <span class="class">PrefixNamingStrategy</span> <span class="directive">implements</span> NamingStrategy {
   <span class="directive">private</span> <span class="predefined-type">Map</span>&lt;<span class="predefined-type">Class</span>, <span class="predefined-type">String</span>&gt; columnPrefix = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;&gt;();
 
   { columnPrefix.put(Workout.class, <span class="string"><span class="delimiter">&quot;</span><span class="content">WO</span><span class="delimiter">&quot;</span></span>); }
@@ -257,7 +255,7 @@ The root can thus ensure the integrity of the aggregate as a whole.</p></div></b
   <span class="tag">&lt;groupId&gt;</span>org.mybatis<span class="tag">&lt;/groupId&gt;</span>
   <span class="tag">&lt;artifactId&gt;</span>mybatis-spring<span class="tag">&lt;/artifactId&gt;</span>
   <span class="tag">&lt;version&gt;</span>1.3.1<span class="tag">&lt;/version&gt;</span>
-<span class="tag">&lt;/dependency&gt;</span></code></pre></div></div></section><section id="_context"><h2>Context</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Bean</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre></div></div></section><section id="_context"><h2>Context</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Bean</span>
 SqlSessionFactoryBean sessionFactory(<span class="predefined-type">DataSource</span> db) {
 
   org.apache.ibatis.session.Configuration config =
@@ -284,7 +282,7 @@ SqlSessionTemplate session(SqlSessionFactory factory) {
     <span class="keyword">return</span> MyBatisDataAccessStrategy
         .createCombinedAccessStrategy(context, sqlSession);
   }
-}</code></pre></div></div></section><section id="_mapping"><h2>Mapping</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
+}</code></pre></div></div></section><section id="_mapping"><h2>Mapping</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
 <span class="doctype">&lt;!DOCTYPE mapper
     PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
     &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;</span>
@@ -316,7 +314,7 @@ Workout wonkyWorkout();</code></pre></div></div></section><section id="_rowmappe
 }</code></pre></div></div></section></section>
 <section><section id="_integration_with_sd_rest"><h2>Integration with SD-Rest</h2><div class="paragraph"><p>Make it a bootiful Webapplication</p></div></section><section id="_spring_data_jdbc_specific"><h2>Spring Data JDBC specific</h2><div class="paragraph"><p>Almost nothing.</p></div>
 <div class="paragraph"><p>Entities need to be Beans for JSON serializer.</p></div></section></section>
-<section><section id="__maybe_upcoming" data-background-image="images/future.png" data-background-size="contain"><h2>(Maybe) upcoming</h2><div class="paragraph"><p>Not promising anything.</p></div></section><section id="_auditing"><h2>Auditing</h2></section><section id="_better_crud"><h2>Better CRUD</h2><div class="paragraph"><p>upserts?</p></div></section><section id="_derived_queries"><h2>Derived Queries</h2></section><section id="_sorting_and_paging"><h2>Sorting and Paging</h2></section><section id="_named_queries_with_mybatis"><h2>Named Queries with MyBatis</h2></section><section id="_named_queryies_via_properties"><h2>Named Queryies via Properties</h2></section><section id="_spring_boot_support"><h2>Spring Boot Support</h2><div class="paragraph"><p>PoC: <a href="https://github.com/schauder/spring-data-jdbc-boot-starter" class="bare">https://github.com/schauder/spring-data-jdbc-boot-starter</a></p></div></section></section>
+<section><section id="__maybe_upcoming" data-background-image="images/future.png" data-background-size="contain"><h2>(Maybe) upcoming</h2><div class="paragraph"><p>Not promising anything.</p></div></section><section id="_auditing"><h2>Auditing</h2></section><section id="_better_crud"><h2>Better CRUD</h2><div class="paragraph"><p>upserts?</p></div></section><section id="_derived_queries"><h2>Derived Queries</h2></section><section id="_sorting_and_paging"><h2>Sorting and Paging</h2></section><section id="_named_queries_with_mybatis"><h2>Named Queries with MyBatis</h2></section><section id="_named_queries_via_properties"><h2>Named Queries via Properties</h2></section><section id="_spring_boot_support"><h2>Spring Boot Support</h2><div class="paragraph"><p>PoC: <a href="https://github.com/schauder/spring-data-jdbc-boot-starter" class="bare">https://github.com/schauder/spring-data-jdbc-boot-starter</a></p></div></section></section>
 <section><section id="_toqaeft"><h2>TOQAEFT</h2><div class="paragraph"><p>The One Question Asked Every Freaking Time</p></div></section><section id="_is_there_reactive_support"><h2>Is there reactive support?</h2></section><section id="_not_yet"><h2>Not yet</h2></section><section id="_jdbc_is_blocking"><h2>JDBC is blocking</h2><div class="paragraph"><p>Might wrap it in a <code>ThreadPool</code></p></div></section><section id="_oracle_works_on_an_async_sql_api"><h2>Oracle Works on an Async SQL-API</h2><div class="paragraph"><p>Not Flow/Reactive Stream based</p></div>
 <div class="paragraph"><p><a href="https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&amp;showEnrolled=false">Java One Slides</a></p></div>
 <div class="paragraph"><p>Mailing List: <a href="http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss" class="bare">http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss</a></p></div>
@@ -398,7 +396,7 @@ Reveal.initialize({
   height: 720,
 
   // Factor of the display size that should remain empty around the content
-  margin: 0.1,
+  margin: 0,
 
   // Bounds for smallest/largest possible scale to apply to content
   minScale: 0.2,
