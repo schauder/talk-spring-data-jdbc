@@ -29,8 +29,8 @@ import org.springframework.data.annotation.Id;
 public class Workout {
 
 	@Id
-	Long id;
-	String name;
-	Focus focus;
+	public Long id;
+	public String name;
+	public Focus focus;
 }
 // end::main[]

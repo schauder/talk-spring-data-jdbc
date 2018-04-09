@@ -13,23 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk;
+package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
 
+import de.schauderhaft.spring.data.jdbc.talk.Focus;
+import de.schauderhaft.spring.data.jdbc.talk.SpringleticsConfiguration;
+import de.schauderhaft.spring.data.jdbc.talk.Workout;
+import de.schauderhaft.spring.data.jdbc.talk.WorkoutRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import static org.assertj.core.api.Java6Assertions.*;
 
 /**
  * @author Jens Schauder
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = SpringleticsConfiguration.class)
-public class SpringleticsTest {
+@ContextConfiguration(classes = {SpringleticsConfiguration.class, WithPrefixesConfiguration.class})
+public class SpringleticsWithPrefixesTest {
 
 	@Autowired
 	WorkoutRepository repository;
@@ -44,7 +48,7 @@ public class SpringleticsTest {
 
 // tag::create[]
  		Workout workout = new Workout();
-		workout.name = "Juergen Hoeller";
+		workout.name = "Red Jonson";
 		workout.focus = Focus.ENDURANCE;
 
 		Workout saved = repository.save(workout);
@@ -54,7 +58,7 @@ public class SpringleticsTest {
 // end::create[]
 
 // tag::update[]
-		saved.name = "Jürgen Höller";
+		saved.name = "Rod Johnson";
 		repository.save(saved);
 
 		repository.deleteById(saved.id);
@@ -64,23 +68,4 @@ public class SpringleticsTest {
 				.isPresent()).isFalse();
 	}
 
-	@Test
-	public void demonstrateQuery(){
-
- 		Workout workout = new Workout();
-		workout.name = "Oliver Gierke";
-		workout.focus = Focus.ENDURANCE;
-
-		repository.save(workout);
-
-		assertThat(repository.findByName("ver"))
-				.hasSize(1);
-		assertThat(repository.deleteByName("ver")).isEqualTo(1);
-		assertThat(repository.deleteByName("ver")).isEqualTo(0);
-	}
-
-	@Test
-	public void demonstrateCustomRowMapper(){
-		assertThat(repository.wonkyWorkout().name).isEqualTo("Dummy-Workout");
-	}
 }

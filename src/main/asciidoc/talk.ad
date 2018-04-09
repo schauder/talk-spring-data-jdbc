@@ -173,11 +173,13 @@ DELETE from Workout where id = ?
 	void deleteAll();
 ----
 
-=== NamingStrategy
+== NamingStrategy
+
+=== PrefixNamingStrategy
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}PrefixNamingStrategy.java[tags=naming]
+include::{main-incl}namingstrategy/PrefixNamingStrategy.java[tags=naming]
 ----
 
 === Dynamic NamingStrategy
