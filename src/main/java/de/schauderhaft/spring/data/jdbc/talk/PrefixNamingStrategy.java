@@ -27,7 +27,8 @@ import java.util.Map;
  *
  * @author Jens Schauder
  */
-@Component
+// remove the comment in the following line in order to enable this naming strategy.
+// @Component
 // tag::naming[]
 class PrefixNamingStrategy implements NamingStrategy {
 	private Map<Class, String> columnPrefix = new HashMap<>();
