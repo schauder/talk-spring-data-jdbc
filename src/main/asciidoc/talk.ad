@@ -3,7 +3,7 @@
 :twitter-tag: @jensschauder
 :conference-tag: @jug_de
 :talk-tag: #sd-jdbc
-:slide-link: to be defined
+:slide-link: http://bit.ly/talk-sd-jdbc
 :linkattrs:
 :main-incl: {src-incl}/src/main/java/de/schauderhaft/spring/data/jdbc/talk/
 :test-incl: {src-incl}/src/test/java/de/schauderhaft/spring/data/jdbc/talk/
@@ -436,14 +436,14 @@ upserts?
 
 PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
 
-== References
-
-Github: https://github.com/spring-projects/spring-data-jdbc
-
-Project: https://projects.spring.io/spring-data-jdbc/
-
-Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
-
-Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
-
 include::self.ad[]
+
+=== References
+
+* Github: https://github.com/spring-projects/spring-data-jdbc
+
+* Project: https://projects.spring.io/spring-data-jdbc/
+
+* Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
+
+* Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
