@@ -373,21 +373,21 @@ include::{src-incl}pom.xml[tags=mybatis]
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}SpringleticsConfiguration.java[tags=mybatis1]
+include::{main-incl}mybatis/WithMyBatisConfiguration.java[tags=mybatis1]
 ----
 
 === Context
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}SpringleticsConfiguration.java[tags=mybatis2]
+include::{main-incl}mybatis/WithMyBatisConfiguration.java[tags=mybatis2]
 ----
 
 === Context
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}SpringleticsConfiguration.java[tags=mybatis3]
+include::{main-incl}mybatis/WithMyBatisConfiguration.java[tags=mybatis3]
 ----
 
 === Mapping
