@@ -13,8 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk;
+package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
 
+import de.schauderhaft.spring.data.jdbc.talk.Workout;
 import org.springframework.data.jdbc.mapping.model.JdbcPersistentProperty;
 import org.springframework.data.jdbc.mapping.model.NamingStrategy;
 import org.springframework.stereotype.Component;
