@@ -5,10 +5,10 @@
 <mapper namespace="de.schauderhaft.spring.data.jdbc.talk.WorkoutMapper">
 	<select id="findById" resultType="Workout">
 		SELECT
-			WO_id,
-			'Name based on an id-' || WO_id AS name,
-			WO_focus
-		FROM T_Workout
-		WHERE WO_id = #{id}
+			id,
+			'Name based on an id-' || id AS name,
+			focus
+		FROM Workout
+		WHERE id = #{id}
 	</select>
 </mapper>
