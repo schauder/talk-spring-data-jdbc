@@ -181,7 +181,7 @@
                                 <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
 	                            <src-incl>${project.basedir}/</src-incl>
                                 <!-- put here the reveal.js specific attributes -->
-	                            <revealjs_customtheme>${theme.dir}/schauderhaft.css</revealjs_customtheme>
+	                            <revealjs_customtheme>theme/schauderhaft.css</revealjs_customtheme>
 	                            <revealjs_transition>linear</revealjs_transition>
                                 <project-version>${project.version}</project-version>
 	                            <revealjs_history>true</revealjs_history>
