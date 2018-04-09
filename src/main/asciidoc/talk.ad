@@ -11,6 +11,13 @@
 
 include::footer.ad[]
 
+== Talk Motto
+
+[quote, "Reid Hoffman"]
+____
+If you are not embarrassed by the first version of your product, you’ve launched too late.
+____
+
 == Spring Data
 
 * Consistent Programming Model for data access.
@@ -51,7 +58,7 @@ Mähdrescher
 
 * No deferred flushing
 
-* Very simple & limited ORM
+* Very simple & limited & opinionated ORM
 
 === Simplicity is King
 
@@ -436,5 +443,7 @@ Github: https://github.com/spring-projects/spring-data-jdbc
 Project: https://projects.spring.io/spring-data-jdbc/
 
 Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
+
+Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
 
 include::self.ad[]
