@@ -139,7 +139,14 @@ of course you can pick what ever you want.
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}SpringleticsConfiguration.java[tags=main]
+include::{main-incl}SpringleticsConfiguration.java[tags=datasource]
+----
+
+=== Configuration (Template)
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}SpringleticsConfiguration.java[tags=template]
 ----
 
 [NOTE.speaker]
@@ -223,6 +230,8 @@ No caching or anything.
 
 === Methods in CrudRepository
 
+=== !
+
 [source, java]
 ----
 <S extends T> S save(S entity);
@@ -243,6 +252,8 @@ void deleteAll();
 image::name.png[canvas,size=contain]
 
 === PrefixNamingStrategy
+
+=== !
 
 [source, java, indent=0, tabsize=2]
 ----
@@ -526,6 +537,8 @@ include::{src-incl}pom.xml[tags=mybatis]
 
 === Context
 
+=== !
+
 [source, java, indent=0, tabsize=2]
 ----
 include::{main-incl}mybatis/WithMyBatisConfiguration.java[tags=mybatis1]
@@ -547,6 +560,7 @@ include::{main-incl}mybatis/WithMyBatisConfiguration.java[tags=mybatis3]
 
 === Mapping
 
+=== !
 [source, xml, indent=0, tabsize=2]
 ----
 include::{src-incl}src/main/resources/de/schauderhaft/spring/data/jdbc/talk/WorkoutMapper.xml[]
@@ -618,7 +632,7 @@ upserts?
 
 === Named Queries with MyBatis
 
-=== Named Queryies via Properties
+=== Named Queries via Properties
 
 === Spring Boot Support
 

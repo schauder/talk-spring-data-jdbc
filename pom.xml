@@ -192,6 +192,7 @@
 	                            <revealjs_history>true</revealjs_history>
 	                            <revealjs_width>1280</revealjs_width>
 	                            <revealjs_height>720</revealjs_height>
+	                            <revealjs_margin>0</revealjs_margin>
                             </attributes>
                         </configuration>
                     </execution>

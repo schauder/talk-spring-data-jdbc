@@ -127,8 +127,9 @@ $selectionColor: $color-primary-0;
   vertical-align: baseline;
 }
 
-.reveal pre {
-  width: 100%
+.reveal section>div:first-child pre code {
+  height: 100%;
+  max-height: 600px;
 }
 
 .reveal pre code {
