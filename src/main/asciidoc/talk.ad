@@ -128,7 +128,7 @@ include::{main-incl}WorkoutRepository.java[tags=main]
 
 [source, sql, indent=0, tabsize=2]
 ----
-include::{res-incl}schema.sql[]
+include::{res-incl}create-schema.sql[]
 ----
 
 === Create, Read
@@ -154,6 +154,23 @@ SELECT Workout.id AS id, Workout.name AS name, Workout.focus AS focus
        FROM Workout WHERE Workout.id = ?
 update Workout set id = ?, name = ?, focus = ? where id = ?
 DELETE from Workout where id = ?
+----
+
+=== Methods in CrudRepository
+
+[source, java]
+----
+	<S extends T> S save(S entity);
+	<S extends T> Iterable<S> saveAll(Iterable<S> entities);
+	Optional<T> findById(ID id);
+	boolean existsById(ID id);
+	Iterable<T> findAll();
+	Iterable<T> findAllById(Iterable<ID> ids);
+	long count();
+	void deleteById(ID id);
+	void delete(T entity);
+	void deleteAll(Iterable<? extends T> entities);
+	void deleteAll();
 ----
 
 === NamingStrategy
@@ -335,6 +352,14 @@ Represents a single SQL statement to be executed against the database.
 
 == MyBatis
 
+=== How?
+
+* CRUD methods get translated into DbActions
+* Each action gets mapped to a MyBatis query id.
+* If not found default implementation is used.
+
+Example: Deleting all via a give property path referenced entities -> `deleteAll.<propertyPath>`
+
 === Dependencies
 
 [source, xml, indent=0, tabsize=2]
@@ -447,3 +472,5 @@ include::self.ad[]
 * Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
 
 * Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
+
+* Freeletics: https://www.freeletics.com
