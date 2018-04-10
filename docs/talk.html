@@ -106,9 +106,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph"><p>(but still want to use a RDBMS)</p></div></section></section>
 <section><section id="_crudrepository"><h2>CrudRepository</h2></section><section id="_dependencies"><h2>Dependencies</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;groupId&gt;</span>org.springframework.data<span class="tag">&lt;/groupId&gt;</span>
 <span class="tag">&lt;artifactId&gt;</span>spring-data-jdbc<span class="tag">&lt;/artifactId&gt;</span>
-<span class="tag">&lt;version&gt;</span>1.0.0.BUILD-SNAPSHOT<span class="tag">&lt;/version&gt;</span></code></pre></div></div></section><section id="_the_usual_suspects"><h2>The usual suspects</h2><div class="ulist"><ul><li><p>hsqldb</p></li><li><p>lombok</p></li><li><p>junit</p></li><li><p>spring-test</p></li><li><p>assertj</p></li></ul></div></section><section id="_configuration"><h2>Configuration</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Configuration</span>
-<span class="annotation">@ComponentScan</span>
-<span class="annotation">@EnableJdbcRepositories</span>
+<span class="tag">&lt;version&gt;</span>1.0.0.BUILD-SNAPSHOT<span class="tag">&lt;/version&gt;</span></code></pre></div></div></section><section id="_the_usual_suspects"><h2>The usual suspects</h2><div class="ulist"><ul><li><p>hsqldb</p></li><li><p>lombok</p></li><li><p>junit</p></li><li><p>spring-test</p></li><li><p>assertj</p></li></ul></div></section><section id="_configuration"><h2>Configuration</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@EnableJdbcRepositories</span>
 <span class="directive">public</span> <span class="type">class</span> <span class="class">SpringleticsConfiguration</span> {
 
   <span class="annotation">@Bean</span>
@@ -116,6 +114,7 @@ table.CodeRay td.code>pre{padding:0}
     <span class="keyword">return</span> <span class="keyword">new</span> EmbeddedDatabaseBuilder()
         .setType(EmbeddedDatabaseType.HSQL)
         .addScript(<span class="string"><span class="delimiter">&quot;</span><span class="content">create-schema.sql</span><span class="delimiter">&quot;</span></span>)
+        .generateUniqueName(<span class="predefined-constant">true</span>)
         .build();
   }
 
@@ -130,21 +129,37 @@ table.CodeRay td.code>pre{padding:0}
   Focus focus;
 }</code></pre></div></div></section><section id="_entity_2"><h2>Entity</h2><div class="paragraph"><p>All you need is an <code>@Id</code></p></div>
 <div class="ulist"><ul><li><p>getters/setters are optional</p></li><li><p>default constructor is optional</p></li></ul></div></section><section id="_repository"><h2>Repository</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="directive">public</span> <span class="type">interface</span> <span class="class">WorkoutRepository</span>
-    <span class="directive">extends</span> CrudRepository&lt;Workout, <span class="predefined-type">Long</span>&gt;</code></pre></div></div></section><section id="_schema"><h2>Schema</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="sql language-sql">Unresolved directive <span class="keyword">in</span> talk.ad - include::/Users/jschauder/IdeaProjects/talk-spring-data-jdbc//src/main/resources/schema.sql[]</code></pre></div></div></section><section id="_create_read"><h2>Create, Read</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">Workout workout = <span class="keyword">new</span> Workout();
-workout.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">Afrodite</span><span class="delimiter">&quot;</span></span>;
+    <span class="directive">extends</span> CrudRepository&lt;Workout, <span class="predefined-type">Long</span>&gt;</code></pre></div></div></section><section id="_schema"><h2>Schema</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="sql language-sql"><span class="class">CREATE</span> <span class="type">TABLE</span> Workout (
+  id IDENTITY,
+  name <span class="predefined-type">VARCHAR</span>(<span class="integer">200</span>),
+  focus <span class="predefined-type">VARCHAR</span>(<span class="integer">20</span>)
+);
+<span class="class">INSERT</span> <span class="class">INTO</span> workout (name) <span class="keyword">VALUES</span> (<span class="string"><span class="delimiter">'</span><span class="content">Starbuxman</span><span class="delimiter">'</span></span>);</code></pre></div></div></section><section id="_create_read"><h2>Create, Read</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">Workout workout = <span class="keyword">new</span> Workout();
+workout.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">Juergen Hoeller</span><span class="delimiter">&quot;</span></span>;
 workout.focus = Focus.ENDURANCE;
 
 Workout saved = repository.save(workout);
 
 assertThat(repository.findById(saved.id)
-    .isPresent()).isTrue();</code></pre></div></div></section><section id="_update_delete"><h2>Update, Delete</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">saved.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">Aphrodite</span><span class="delimiter">&quot;</span></span>;
+    .isPresent()).isTrue();</code></pre></div></div></section><section id="_update_delete"><h2>Update, Delete</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">saved.name = <span class="string"><span class="delimiter">&quot;</span><span class="content">Jürgen Höller</span><span class="delimiter">&quot;</span></span>;
 repository.save(saved);
 
 repository.deleteById(saved.id);</code></pre></div></div></section><section id="_log_output"><h2>Log Output</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="sql language-sql"><span class="class">insert</span> <span class="class">into</span> Workout (name, focus) <span class="keyword">values</span> (<span class="error">?</span>, <span class="error">?</span>)
 <span class="class">SELECT</span> Workout.id <span class="keyword">AS</span> id, Workout.name <span class="keyword">AS</span> name, Workout.focus <span class="keyword">AS</span> focus
        <span class="keyword">FROM</span> Workout <span class="keyword">WHERE</span> Workout.id = <span class="error">?</span>
 <span class="class">update</span> Workout <span class="class">set</span> id = <span class="error">?</span>, name = <span class="error">?</span>, focus = <span class="error">?</span> <span class="keyword">where</span> id = <span class="error">?</span>
-<span class="class">DELETE</span> <span class="keyword">from</span> Workout <span class="keyword">where</span> id = <span class="error">?</span></code></pre></div></div></section><section id="_namingstrategy"><h2>NamingStrategy</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="type">class</span> <span class="class">PrefixNamingStrategy</span> <span class="directive">implements</span> NamingStrategy {
+<span class="class">DELETE</span> <span class="keyword">from</span> Workout <span class="keyword">where</span> id = <span class="error">?</span></code></pre></div></div></section><section id="_methods_in_crudrepository"><h2>Methods in CrudRepository</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">        &lt;S <span class="directive">extends</span> T&gt; S save(S entity);
+        &lt;S <span class="directive">extends</span> T&gt; <span class="predefined-type">Iterable</span>&lt;S&gt; saveAll(<span class="predefined-type">Iterable</span>&lt;S&gt; entities);
+        Optional&lt;T&gt; findById(ID id);
+        <span class="type">boolean</span> existsById(ID id);
+        <span class="predefined-type">Iterable</span>&lt;T&gt; findAll();
+        <span class="predefined-type">Iterable</span>&lt;T&gt; findAllById(<span class="predefined-type">Iterable</span>&lt;ID&gt; ids);
+        <span class="type">long</span> count();
+        <span class="type">void</span> deleteById(ID id);
+        <span class="type">void</span> delete(T entity);
+        <span class="type">void</span> deleteAll(<span class="predefined-type">Iterable</span>&lt;? <span class="directive">extends</span> T&gt; entities);
+        <span class="type">void</span> deleteAll();</code></pre></div></div></section></section>
+<section><section id="_namingstrategy"><h2>NamingStrategy</h2></section><section id="_prefixnamingstrategy"><h2>PrefixNamingStrategy</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="type">class</span> <span class="class">PrefixNamingStrategy</span> <span class="directive">implements</span> NamingStrategy {
   <span class="directive">private</span> <span class="predefined-type">Map</span>&lt;<span class="predefined-type">Class</span>, <span class="predefined-type">String</span>&gt; columnPrefix = <span class="keyword">new</span> <span class="predefined-type">HashMap</span>&lt;&gt;();
 
   { columnPrefix.put(Workout.class, <span class="string"><span class="delimiter">&quot;</span><span class="content">WO</span><span class="delimiter">&quot;</span></span>); }
@@ -198,7 +213,8 @@ The root can thus ensure the integrity of the aggregate as a whole.</p></div></b
     <span class="comment">// do what ever you want</span>
   }
 }</code></pre></div></div></section><section id="_available_events"><h2>Available Events</h2><div class="ulist"><ul><li><p><code>BeforeSave</code></p></li><li><p><code>AfterSave</code></p></li><li><p><code>BeforeDelete</code></p></li><li><p><code>AfterDelete</code></p></li><li><p><code>AfterCreation</code> - when an Aggregate got instantiated from the database</p></li></ul></div></section><section id="__code_aggregatechange_code"><h2><code>AggregateChange</code></h2><div class="ulist"><ul><li><p>A model of the changes to be applied to the database</p></li><li><p>contains a <strong>mutable</strong> list of <code>DbAction</code> s.</p></li></ul></div></section><section id="__code_dbaction_code"><h2><code>DbAction</code></h2><div class="paragraph"><p>Represents a single SQL statement to be executed against the database.</p></div></section><section id="_do_whatever_you_want"><h2>Do whatever you want</h2><div class="ulist"><ul><li><p>Access the repository</p></li><li><p>change the entities</p></li><li><p><strong>Change</strong> the <code>AggregateChange</code>!</p></li></ul></div></section></section>
-<section><section id="_mybatis"><h2>MyBatis</h2></section><section id="_dependencies_2"><h2>Dependencies</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
+<section><section id="_mybatis"><h2>MyBatis</h2></section><section id="_how"><h2>How?</h2><div class="ulist"><ul><li><p>CRUD methods get translated into DbActions</p></li><li><p>Each action gets mapped to a MyBatis query id.</p></li><li><p>If not found default implementation is used.</p></li></ul></div>
+<div class="paragraph"><p>Example: Deleting all via a give property path referenced entities &#8594; <code>deleteAll.&lt;propertyPath&gt;</code></p></div></section><section id="_dependencies_2"><h2>Dependencies</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;dependency&gt;</span>
   <span class="tag">&lt;groupId&gt;</span>org.mybatis<span class="tag">&lt;/groupId&gt;</span>
   <span class="tag">&lt;artifactId&gt;</span>mybatis<span class="tag">&lt;/artifactId&gt;</span>
   <span class="tag">&lt;version&gt;</span>3.4.5<span class="tag">&lt;/version&gt;</span>
@@ -241,17 +257,17 @@ SqlSessionTemplate session(SqlSessionFactory factory) {
 <span class="tag">&lt;mapper</span> <span class="attribute-name">namespace</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">de.schauderhaft.spring.data.jdbc.talk.WorkoutMapper</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
   <span class="tag">&lt;select</span> <span class="attribute-name">id</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">findById</span><span class="delimiter">&quot;</span></span> <span class="attribute-name">resultType</span>=<span class="string"><span class="delimiter">&quot;</span><span class="content">Workout</span><span class="delimiter">&quot;</span></span><span class="tag">&gt;</span>
     SELECT
-      WO_id,
-      'Name based on an id-' || WO_id AS name,
-      WO_focus
-    FROM T_Workout
-    WHERE WO_id = #{id}
+      id,
+      'Name based on an id-' || id AS name,
+      focus
+    FROM Workout
+    WHERE id = #{id}
   <span class="tag">&lt;/select&gt;</span>
 <span class="tag">&lt;/mapper&gt;</span></code></pre></div></div></section><section id="_thanks"><h2>Thanks!</h2><div class="paragraph"><p><strong>Kazuki Shimizu</strong></p></div>
 <div class="paragraph"><p>kazuki43zoo</p></div></section></section>
-<section><section id="__code_query_code"><h2><code>@Query</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT * FROM T_WORKOUT WHERE WO_NAME like '%' || :name || '%'</span><span class="delimiter">&quot;</span></span>)
+<section><section id="__code_query_code"><h2><code>@Query</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">SELECT * FROM WORKOUT WHERE NAME like '%' || :name || '%'</span><span class="delimiter">&quot;</span></span>)
 <span class="predefined-type">List</span>&lt;Workout&gt; findByName(<span class="annotation">@Param</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> name);</code></pre></div></div></section><section id="__code_modifying_code"><h2><code>@Modifying</code></h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Modifying</span>
-<span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">DELETE FROM T_WORKOUT WHERE WO_NAME like '%' || :name || '%'</span><span class="delimiter">&quot;</span></span>)
+<span class="annotation">@Query</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">DELETE FROM WORKOUT WHERE NAME like '%' || :name || '%'</span><span class="delimiter">&quot;</span></span>)
 <span class="predefined-type">Long</span> deleteByName(<span class="annotation">@Param</span>(<span class="string"><span class="delimiter">&quot;</span><span class="content">name</span><span class="delimiter">&quot;</span></span>) <span class="predefined-type">String</span> name);</code></pre></div></div></section><section id="_rowmapper"><h2>RowMapper</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@Query</span>(value = <span class="string"><span class="delimiter">&quot;</span><span class="content">VALUES ('Dummy-Workout')</span><span class="delimiter">&quot;</span></span>,
     rowMapperClass = DummyRowMapper.class)
 Workout wonkyWorkout();</code></pre></div></div></section><section id="_rowmapper_2"><h2>RowMapper</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="type">class</span> <span class="class">DummyRowMapper</span> <span class="directive">implements</span> <span class="predefined-type">RowMapper</span>&lt;Workout&gt; {
@@ -267,21 +283,14 @@ Workout wonkyWorkout();</code></pre></div></div></section><section id="_rowmappe
 <section><section id="_integration_with_sd_rest"><h2>Integration with SD-Rest</h2><div class="paragraph"><p>Make it a bootiful Webapplication</p></div></section><section id="_spring_data_jdbc_specific"><h2>Spring Data JDBC specific</h2><div class="paragraph"><p>Almost nothing.</p></div>
 <div class="paragraph"><p>Entities need to be Beans for JSON serializer.</p></div></section></section>
 <section><section id="__maybe_upcoming"><h2>(Maybe) upcoming</h2><div class="paragraph"><p>Not promising anything.</p></div></section><section id="_auditing"><h2>Auditing</h2></section><section id="_better_crud"><h2>Better CRUD</h2><div class="paragraph"><p>upserts?</p></div></section><section id="_derived_queries"><h2>Derived Queries</h2></section><section id="_sorting_and_paging"><h2>Sorting and Paging</h2></section><section id="_named_queries_with_mybatis"><h2>Named Queries with MyBatis</h2></section><section id="_named_queryies_via_properties"><h2>Named Queryies via Properties</h2></section><section id="_spring_boot_support"><h2>Spring Boot Support</h2><div class="paragraph"><p>PoC: <a href="https://github.com/schauder/spring-data-jdbc-boot-starter" class="bare">https://github.com/schauder/spring-data-jdbc-boot-starter</a></p></div></section></section>
-<section id="_references"><h2>References</h2><div class="paragraph"><p>Github: <a href="https://github.com/spring-projects/spring-data-jdbc" class="bare">https://github.com/spring-projects/spring-data-jdbc</a></p></div>
-<div class="paragraph"><p>Project: <a href="https://projects.spring.io/spring-data-jdbc/" class="bare">https://projects.spring.io/spring-data-jdbc/</a></p></div>
-<div class="paragraph"><p>Examples: <a href="https://github.com/spring-projects/spring-data-examples/tree/master/jdbc" class="bare">https://github.com/spring-projects/spring-data-examples/tree/master/jdbc</a></p></div>
-<div class="paragraph"><p><a href="http://blog.schauderhaft.de/talk-spring-data-jdbc/talk.html#/" class="bare">http://blog.schauderhaft.de/talk-spring-data-jdbc/talk.html#/</a></p></div></section>
-<section id="_jens_schauder"><h2>Jens Schauder</h2><div class="paragraph"><p>Vater, Spieler, Läufer, Boulderer</p></div>
-<span>
+<section><section id="_jens_schauder"><h2>Jens Schauder</h2><div class="paragraph"><p>Vater, Spieler, Läufer, Boulderer</p></div><span>
 <img src="images/pivotal-spring-logo.png" style="vertical-align: middle; border:none;" width="200"/>
 +
 <img src="images/spring-data-logo.png"  style="vertical-align: middle; border:none;" width="60"/>
-</span>
-<div class="paragraph"><p>JUG Organizer
+</span><div class="paragraph"><p>JUG Organizer
     
     <img src="images/jug_final_small.png" style="vertical-align: middle; border:none;" width="150"/>
-    </p></div>
-<div class="paragraph"><p><a href="http://bit.ly/talk-sd-jdbc">Folien online: http://bit.ly/talk-sd-jdbc</a></p></div></section></div></div><script src="reveal.js-3.6.0/lib/js/head.min.js"></script><script src="reveal.js-3.6.0/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+    </p></div><div class="paragraph"><p><a href="http://bit.ly/talk-sd-jdbc">Folien online: http://bit.ly/talk-sd-jdbc</a></p></div></section><section id="_references"><h2>References</h2><div class="ulist"><ul><li><p>Github: <a href="https://github.com/spring-projects/spring-data-jdbc" class="bare">https://github.com/spring-projects/spring-data-jdbc</a></p></li><li><p>Project: <a href="https://projects.spring.io/spring-data-jdbc/" class="bare">https://projects.spring.io/spring-data-jdbc/</a></p></li><li><p>Examples: <a href="https://github.com/spring-projects/spring-data-examples/tree/master/jdbc" class="bare">https://github.com/spring-projects/spring-data-examples/tree/master/jdbc</a></p></li><li><p>Slides on Github: <a href="https://github.com/schauder/talk-spring-data-jdbc" class="bare">https://github.com/schauder/talk-spring-data-jdbc</a></p></li><li><p>Freeletics: <a href="https://www.freeletics.com" class="bare">https://www.freeletics.com</a></p></li></ul></div></section></section></div></div><script src="reveal.js-3.6.0/lib/js/head.min.js"></script><script src="reveal.js-3.6.0/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
