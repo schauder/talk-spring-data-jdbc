@@ -26,8 +26,6 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import javax.sql.DataSource;
 
 // tag::main[]
-@Configuration
-@ComponentScan
 @EnableJdbcRepositories
 public class SpringleticsConfiguration {
 

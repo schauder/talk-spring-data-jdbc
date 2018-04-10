@@ -12,7 +12,6 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.0.RELEASE</version>
-		<relativePath></relativePath>
 	</parent>
     <properties>
         <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
@@ -29,6 +28,12 @@
     </properties>
 
 	<dependencies>
+		<!-- when using boot we need to overwrite the Spring Data version to use the one Spring Data JDBC is build on. -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>2.1.0.BUILD-SNAPSHOT</version>
+		</dependency>
 		<dependency>
 		<!-- tag::sdjdbc[] -->
 			<groupId>org.springframework.data</groupId>
