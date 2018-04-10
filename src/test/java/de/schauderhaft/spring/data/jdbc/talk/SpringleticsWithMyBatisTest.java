@@ -15,10 +15,6 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk;
 
-import de.schauderhaft.spring.data.jdbc.talk.Focus;
-import de.schauderhaft.spring.data.jdbc.talk.SpringleticsConfiguration;
-import de.schauderhaft.spring.data.jdbc.talk.Workout;
-import de.schauderhaft.spring.data.jdbc.talk.WorkoutRepository;
 import de.schauderhaft.spring.data.jdbc.talk.mybatis.WithMyBatisConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,7 +53,7 @@ public class SpringleticsWithMyBatisTest {
 		Workout saved = repository.save(workout);
 
 		Optional<Workout> loaded = repository.findById(saved.id);
-		assertThat(loaded				.isPresent()).isTrue();
+		assertThat(loaded.isPresent()).isTrue();
 		assertThat(loaded.get().getName()).startsWith("Name based on an id-");
 // end::create[]
 
