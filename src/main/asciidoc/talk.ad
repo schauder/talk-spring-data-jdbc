@@ -64,7 +64,9 @@ Mähdrescher
 
 Complexity is tempting
 
-=== Consider SDJ if you
+=== Consider Spring Data JDBC
+
+ if you
 
 * want to custom code most SQL anyway
 
@@ -209,7 +211,7 @@ aka ORM
 
 [source,java]
 ----
-classWorkout {
+class Workout {
     // ...
     List<Exercise> exercises
     // ...
