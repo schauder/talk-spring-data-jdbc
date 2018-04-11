@@ -16,6 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
@@ -28,6 +29,9 @@ import java.util.List;
  */
 // tag::main[]
 public class Workout {
+
+	@Transient
+	ExerciseRepository allExercises = null;
 
 	@Id
 	private Long id;
@@ -76,6 +80,21 @@ public class Workout {
 				.filter(e -> e.getExerciseId() == exercise.id)
 				.mapToInt(ExerciseInterval::getRepetitions)
 				.sum();
+	}
+
+	public Exercise getExercise(int i) {
+
+		Assert.notNull(allExercises, "Before using `getExercise(int)` the repository in the `Workout` must be injected");
+
+		return allExercises
+				.findById(exercises.get(i).getExerciseId())
+				.orElseThrow(() -> new RuntimeException(
+						String.format(
+								"Workout '%s' references a not existing exercise with id %s.",
+								name,
+								exercises.get(i).getExerciseId()
+						)
+				));
 	}
 }
 // end::main[]
