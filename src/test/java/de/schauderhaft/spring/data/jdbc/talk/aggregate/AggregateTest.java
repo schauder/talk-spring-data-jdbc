@@ -15,6 +15,7 @@
  */
 package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,22 @@ public class AggregateTest {
 	@Autowired
 	ExerciseRepository exerciseRepo;
 
+
+	Exercise pushUps;
+	Exercise pullUps;
+	Exercise burpees;
+
+
+	@Before
+	public void before() {
+
+		pushUps = new Exercise("Push-ups");
+		pullUps = new Exercise("Pull-ups");
+		burpees = new Exercise("Burpees");
+
+		exerciseRepo.saveAll(asList(pushUps, pullUps, burpees));
+	}
+
 	@Test
 	public void testConfiguration() {
 		assertThat(workoutRepo).isNotNull();
@@ -48,30 +65,12 @@ public class AggregateTest {
 	@Test
 	public void simpleCrud() {
 
-		Exercise pushUps = new Exercise("Push-ups");
-		Exercise pullUps = new Exercise("Pull-ups");
-		Exercise burpees = new Exercise("Burpees");
-
-		exerciseRepo.saveAll(asList(pushUps, pullUps, burpees));
-
-		Workout workout = new Workout("Jens Schauder", Focus.STRENGTH);
-
-		workout.add(10, pullUps);
-		workout.add(30, burpees);
-
-		workout.add(20, pullUps);
-		workout.add(20, burpees);
-
-		workout.add(30, pullUps);
-		workout.add(10, burpees);
-
-
-		Workout saved = workoutRepo.save(workout);
+		Workout saved = createAndSaveWorkout();
 
 		Optional<Workout> reloaded = workoutRepo.findById(saved.getId());
 		assertThat(reloaded.isPresent()).isTrue();
 
-		assertThat(reloaded.get().totalCount(pullUps)).isEqualTo(60);
+		assertThat(reloaded.get().totalCount(pullUps)).isEqualTo(45);
 		assertThat(reloaded.get().totalCount(burpees)).isEqualTo(60);
 		assertThat(reloaded.get().totalCount(pushUps)).isEqualTo(0);
 
@@ -83,4 +82,36 @@ public class AggregateTest {
 		assertThat(workoutRepo.findById(saved.getId())
 				.isPresent()).isFalse();
 	}
+
+	@Test
+	public void enableDirectNavigation() {
+
+		createAndSaveWorkout();
+
+		Iterable<Workout> all = workoutRepo.findAll();
+
+		assertThat(all).hasSize(1);
+
+		all.forEach(
+				workout -> System.out.println(workout.getExercise(2).name.equals("Pull-Ups"))
+		);
+
+
+	}
+
+	private Workout createAndSaveWorkout() {
+		Workout workout = new Workout("Jens Schauder", Focus.STRENGTH);
+
+		workout.add(5, pullUps);
+		workout.add(30, burpees);
+
+		workout.add(15, pullUps);
+		workout.add(20, burpees);
+
+		workout.add(25, pullUps);
+		workout.add(10, burpees);
+
+		return workoutRepo.save(workout);
+	}
+
 }
