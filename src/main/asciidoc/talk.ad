@@ -624,7 +624,43 @@ upserts?
 
 PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
 
-include::self.ad[]
+== TOQAEFT
+
+The One Question Asked Every Freaking Time
+
+=== Is there reactive support?
+
+=== Not yet
+
+=== JDBC is blocking
+
+Might wrap it in a `ThreadPool`
+
+=== Oracle Works on an Async SQL-API
+
+Not Flow/Reactive Stream based
+
+https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false[Java One Slides]
+
+Mailing List: http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss
+
+http://hg.openjdk.java.net/jdk/sandbox/file/b49fd5dbaab6/src/java.sql/share/classes/java/sql2[repository]
+
+[NOTE.speaker]
+====
+It really feels like Oracle is on its very own agenda here.
+
+Everybody interested in reactive and Lukas Eder looked at it.
+Most feedback didn't had much of an effect.
+
+No visible feedback from other database vendors.
+====
+
+=== R2DBC
+
+**R**eactive **R**elational **D**atabase **C**onnectivity
+
+There is a project exploring possibilities: https://github.com/nebhale/r2dbc
 
 === References
 
@@ -637,3 +673,5 @@ include::self.ad[]
 * Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
 
 * Freeletics: https://www.freeletics.com
+
+include::self.ad[]
