@@ -562,7 +562,7 @@ kazuki43zoo
 
 image::select.png[canvas,size=contain]
 
-== `@Query`
+=== `@Query`
 
 [source, java, indent=0, tabsize=2]
 ----
@@ -662,7 +662,7 @@ No visible feedback from other database vendors.
 
 There is a project exploring possibilities: https://github.com/nebhale/r2dbc
 
-=== References
+== References
 
 * Github: https://github.com/spring-projects/spring-data-jdbc
 
@@ -674,4 +674,4 @@ There is a project exploring possibilities: https://github.com/nebhale/r2dbc
 
 * Freeletics: https://www.freeletics.com
 
-include::self.ad[]
+include::self.ad[leveloffset=1]
