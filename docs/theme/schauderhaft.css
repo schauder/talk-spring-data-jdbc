@@ -382,6 +382,10 @@ body {
   background-image: url("images/skin_side_up.png");
 }
 
+div.slide-background.present:not(.stack) {
+  filter: drop-shadow(5px 5px 5px #B5AAA2);
+}
+
 .reveal .attribution {
   font-size: 50%;
 }
