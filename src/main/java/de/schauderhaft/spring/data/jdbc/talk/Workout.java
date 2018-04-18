@@ -17,7 +17,10 @@ package de.schauderhaft.spring.data.jdbc.talk;
 
 import lombok.Data;
 import lombok.Value;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+
+import java.time.Instant;
 
 /**
  * Domain class representing a workout
@@ -32,5 +35,10 @@ public class Workout {
 	Long id;
 	String name;
 	Focus focus;
+
+	// ---- Auditing
+	@CreatedDate
+	Instant createdAt;
+	// ---- End --Auditing
 }
 // end::main[]

@@ -21,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Java6Assertions.assertThat;
+import java.time.Duration;
+import java.time.Instant;
+
+import static org.assertj.core.api.Java6Assertions.*;
 
 /**
  * @author Jens Schauder
@@ -35,15 +38,15 @@ public class SpringleticsTest {
 	WorkoutRepository repository;
 
 	@Test
-	public void testConfiguration(){
+	public void testConfiguration() {
 		assertThat(repository).isNotNull();
 	}
 
 	@Test
-	public void simpleCrud(){
+	public void simpleCrud() {
 
 // tag::create[]
- 		Workout workout = new Workout();
+		Workout workout = new Workout();
 		workout.name = "Juergen Hoeller";
 		workout.focus = Focus.ENDURANCE;
 
@@ -65,9 +68,9 @@ public class SpringleticsTest {
 	}
 
 	@Test
-	public void demonstrateQuery(){
+	public void demonstrateQuery() {
 
- 		Workout workout = new Workout();
+		Workout workout = new Workout();
 		workout.name = "Oliver Gierke";
 		workout.focus = Focus.ENDURANCE;
 
@@ -80,7 +83,26 @@ public class SpringleticsTest {
 	}
 
 	@Test
-	public void demonstrateCustomRowMapper(){
+	public void demonstrateCustomRowMapper() {
 		assertThat(repository.wonkyWorkout().name).isEqualTo("Dummy-Workout");
 	}
+
+
+	@Test
+	public void auditing() {
+
+		Workout workout = new Workout();
+		workout.name = "Oliver Gierke";
+		workout.focus = Focus.ENDURANCE;
+
+		repository.save(workout);
+
+		assertThat(workout.getCreatedAt())
+				.isBetween(
+						Instant.now().minus(Duration.ofSeconds(1)),
+						Instant.now().plus(Duration.ofSeconds(1)));
+
+		assertThat(repository.findById(workout.id).get().getCreatedAt()).isEqualTo(workout.getCreatedAt());
+	}
+
 }
