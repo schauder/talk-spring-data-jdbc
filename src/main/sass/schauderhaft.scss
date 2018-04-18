@@ -144,6 +144,11 @@ body {
   background-image: url('images/skin_side_up.png');
 }
 
+// shadow for background images
+div.slide-background.present:not(.stack) {
+  filter: drop-shadow(5px 5px 5px $color-primary-1);
+}
+
 .reveal .attribution {
   font-size: 50%;
 }
