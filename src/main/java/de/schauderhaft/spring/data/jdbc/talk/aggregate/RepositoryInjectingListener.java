@@ -16,14 +16,14 @@
 package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 
 import org.springframework.context.ApplicationListener;
-import org.springframework.data.jdbc.mapping.event.AfterCreation;
+import org.springframework.data.jdbc.mapping.event.AfterLoadEvent;
 import org.springframework.stereotype.Component;
 
 /**
  * @author Jens Schauder
  */
 @Component
-public class RepositoryInjectingListener implements ApplicationListener<AfterCreation> {
+public class RepositoryInjectingListener implements ApplicationListener<AfterLoadEvent> {
 	private final ExerciseRepository exerciseRepository;
 
 	public RepositoryInjectingListener(ExerciseRepository exerciseRepository) {
@@ -31,7 +31,7 @@ public class RepositoryInjectingListener implements ApplicationListener<AfterCre
 	}
 
 	@Override
-	public void onApplicationEvent(AfterCreation event) {
+	public void onApplicationEvent(AfterLoadEvent event) {
 
 		Object source = event.getEntity();
 		if (source instanceof Workout) {

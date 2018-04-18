@@ -493,11 +493,17 @@ include::{main-incl}BeforeSaveListener.java[tags=main]
 
 === Available Events
 
-* `BeforeSave`
-* `AfterSave`
-* `BeforeDelete`
-* `AfterDelete`
-* `AfterLoad` - when an Aggregate got instantiated from the database
+* `BeforeSaveEvent`
+* `AfterSaveEvent`
+* `BeforeDeleteEvent`
+* `AfterDeleteEvent`
+* `AfterLoadEvent` - when an Aggregate got instantiated from the database
+
+[NOTE.speaker]
+====
+Beware there are events with the same name in Spring Data Rest
+====
+
 
 === `AggregateChange`
 

@@ -16,8 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.context.ApplicationListener;
-import org.springframework.data.jdbc.core.conversion.AggregateChange;
-import org.springframework.data.jdbc.mapping.event.BeforeSave;
+import org.springframework.data.jdbc.mapping.event.BeforeSaveEvent;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,9 +25,9 @@ import org.springframework.stereotype.Component;
 @Component
 // tag::main[]
 class BeforeSaveListener
-		implements ApplicationListener<BeforeSave> {
+		implements ApplicationListener<BeforeSaveEvent> {
 	@Override
-	public void onApplicationEvent(BeforeSave event) {
+	public void onApplicationEvent(BeforeSaveEvent event) {
 		// do what ever you want
 	}
 }
