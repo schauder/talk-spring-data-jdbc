@@ -84,6 +84,8 @@ You can't for example load the unchanged entity in an event
 
 == Spring Data JDBCs Design Choices
 
+image::compass.png[canvas,size=contain]
+
 === No Lazy Loading
 
 === No Caching
@@ -99,6 +101,8 @@ You can't for example load the unchanged entity in an event
 Complexity is tempting
 
 == Consider Spring Data JDBC
+
+image::meter.png[canvas,size=contain]
 
 if you ...
 
@@ -234,17 +238,19 @@ No caching or anything.
 
 [source, java]
 ----
-<S extends T> S save(S entity);
-<S extends T> Iterable<S> saveAll(Iterable<S> entities);
+<S extends T> S
+            save(S entity);
+<S extends T> Iterable<S>
+            saveAll(Iterable<S> entities);
 Optional<T> findById(ID id);
-boolean existsById(ID id);
+boolean     existsById(ID id);
 Iterable<T> findAll();
 Iterable<T> findAllById(Iterable<ID> ids);
-long count();
-void deleteById(ID id);
-void delete(T entity);
-void deleteAll(Iterable<? extends T> entities);
-void deleteAll();
+long        count();
+void        deleteById(ID id);
+void        delete(T entity);
+void        deleteAll(Iterable<? extends T> entities);
+void        deleteAll();
 ----
 
 == NamingStrategy
@@ -612,6 +618,8 @@ include::{main-incl}WorkoutRepository.java[tags=rowmapper2]
 
 == Integration with SD-Rest
 
+image::rest.png[canvas,size=contain]
+
 Make it a bootiful Webapplication
 
 === Spring Data JDBC specific
@@ -645,6 +653,8 @@ upserts?
 PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
 
 == TOQAEFT
+
+image::question.png[canvas,size=contain]
 
 The One Question Asked Every Freaking Time
 
