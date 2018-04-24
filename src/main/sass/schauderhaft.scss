@@ -127,8 +127,9 @@ $selectionColor: $color-primary-0;
   vertical-align: baseline;
 }
 
-.reveal pre {
-  width: 100%
+.reveal section>div:first-child pre code {
+  height: 100%;
+  max-height: 600px;
 }
 
 .reveal pre code {
@@ -141,6 +142,11 @@ $selectionColor: $color-primary-0;
 body {
   // pattern from https://subtlepatterns.com/skin-side-up/
   background-image: url('images/skin_side_up.png');
+}
+
+// shadow for background images
+div.slide-background.present:not(.stack) {
+  filter: drop-shadow(5px 5px 5px $color-primary-1);
 }
 
 .reveal .attribution {

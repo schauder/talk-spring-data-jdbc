@@ -101,14 +101,15 @@
                                     As we are downloading reveal.js in runtime, it sits in a nonstandard folder `reveal.js-${revealjs.version}`
                                 -->
                                 <revealjsdir>reveal.js-${revealjs.version}</revealjsdir>
+	                            <src-incl>${project.basedir}/</src-incl>
                                 <!-- put here the reveal.js specific attributes -->
-                                <sourcedir>${basedir}/src/main/java</sourcedir>
-	                            <revealjs_customtheme>${theme.dir}/schauderhaft.css</revealjs_customtheme>
+	                            <revealjs_customtheme>theme/schauderhaft.css</revealjs_customtheme>
 	                            <revealjs_transition>linear</revealjs_transition>
                                 <project-version>${project.version}</project-version>
 	                            <revealjs_history>true</revealjs_history>
 	                            <revealjs_width>1280</revealjs_width>
 	                            <revealjs_height>720</revealjs_height>
+	                            <revealjs_margin>0</revealjs_margin>
                             </attributes>
                         </configuration>
                     </execution>
