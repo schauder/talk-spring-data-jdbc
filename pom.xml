@@ -38,7 +38,7 @@
 		<!-- tag::sdjdbc[] -->
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jdbc</artifactId>
-			<version>1.0.0.M2</version>
+			<version>1.0.0.M3</version>
 		<!-- end::sdjdbc[] -->
 		</dependency>
 		<dependency>
