@@ -1,5 +1,17 @@
 [subs="attributes"]
 ++++
+
+<script type="text/javascript">
+    window.addEventListener("load", function() {
+    	Reveal.configure({
+          keyboard: {
+             39: 'next', // Right Arrow
+             37: 'prev'  // Left Arrow
+          }
+        });
+    } );
+</script>
+
 <script type="text/javascript">
     window.addEventListener("load", function() {
     	Reveal.configure({
