@@ -27,7 +27,6 @@ import java.util.List;
  *
  * @author Jens Schauder
  */
-// tag::main[]
 public class Workout {
 
 	@Transient
@@ -97,4 +96,3 @@ public class Workout {
 				));
 	}
 }
-// end::main[]
