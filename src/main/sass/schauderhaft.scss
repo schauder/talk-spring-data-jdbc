@@ -123,6 +123,10 @@ $selectionColor: $color-primary-0;
   font-family: "Roboto Mono", monospace;
 }
 
+.reveal .small {
+  font-size: 60%;
+}
+
 .reveal small code {
   vertical-align: baseline;
 }
