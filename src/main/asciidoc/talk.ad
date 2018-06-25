@@ -699,15 +699,15 @@ The whole approach is opposite to reactive.
 
 === ADBA
 
-*A*synchronous *D*ata*B*ase *A*pi being developed by Oracle
+**A**synchronous **D**ata**B**ase **A**pi being developed by Oracle
 
-Java One Slides: https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false
+https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false[Java One Slides: [small]#https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false#]
 
-Mailing List: http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss
+http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss[Mailing List: [.small]#http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss#]
 
-Repository: http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes
+http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes[Repository: [.small]#http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes#]
 
-Manually maintained mirror on github: https://github.com/pull-vert/adba-mirror
+https://github.com/pull-vert/adba-mirror[Mirror on github: [.small]#https://github.com/pull-vert/adba-mirror#]
 
 [NOTE.speaker]
 ====
@@ -726,13 +726,13 @@ Everybody is curious, I guess.
 
 An rudimentary implementation of ADBA based on JDBC.
 
-https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ
+https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ[Repository [.small]#https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ#]
 
 === R2DBC
 
 **R**eactive **R**elational **D**atabase **C**onnectivity
 
-Github Orga: https://github.com/r2dbc
+https://github.com/r2dbc[Github Orga: [.small]#https://github.com/r2dbc#]
 
 === R2DBC Contributers
 
@@ -742,7 +742,7 @@ Github Orga: https://github.com/r2dbc
 
 === R2DBC Experimental Implementations
 
-Postgres https://github.com/r2dbc/r2dbc-postgresql
+https://github.com/r2dbc/r2dbc-postgresql[Postgres [.small]#https://github.com/r2dbc/r2dbc-postgresql#]
 
 Planned: R2DBC over ADBA
 
@@ -752,11 +752,11 @@ Database Client inspired by Webclient.
 
 Reactive Relational Repositories.
 
-Happy Paths in https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc
+https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc[Github: [.small]#https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc#]
 
 === Reactive Wrap up
 
-Lot's is happening.
+Lots is happening.
 
 Many parties involved.
 
