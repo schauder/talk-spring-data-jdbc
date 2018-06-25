@@ -515,7 +515,6 @@ include::{main-incl}BeforeSaveListener.java[tags=main]
 Beware there are events with the same name in Spring Data Rest
 ====
 
-
 === `AggregateChange`
 
 * A model of the changes to be applied to the database
@@ -530,6 +529,37 @@ Represents a single SQL statement to be executed against the database.
 * Access the repository
 * change the entities
 * **Change** the `AggregateChange`!
+
+== Auditing
+
+[NOTE.speaker]
+====
+Not Envers like historization
+
+Just simple setting of created/modified timestamps and users
+====
+
+=== Enable Auditing Support
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}auditing/AuditingConfiguration.java[tags=enable]
+----
+
+=== Add fields
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}auditing/Workout.java[tags=fields]
+----
+
+=== Register `AuditAware`
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}auditing/AuditingConfiguration.java[tags=auditor]
+----
+
 
 == MyBatis
 

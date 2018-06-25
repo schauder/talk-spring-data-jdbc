@@ -13,27 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk;
+package de.schauderhaft.spring.data.jdbc.talk.auditing;
 
-import de.schauderhaft.spring.data.jdbc.talk.namingstrategy.WithPrefixesConfiguration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.assertj.core.api.Java6Assertions.*;
+import java.util.Optional;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * @author Jens Schauder
  */
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {SpringleticsConfiguration.class, WithPrefixesConfiguration.class})
-public class SpringleticsWithPrefixesTest {
+@ContextConfiguration(classes = AuditingConfiguration.class)
+public class AuditingTest {
 
 	@Autowired
-	WorkoutRepository repository;
+	AuditingWorkoutRepository repository;
 
 	@Test
 	public void testConfiguration() {
@@ -43,26 +44,36 @@ public class SpringleticsWithPrefixesTest {
 	@Test
 	public void simpleCrud() {
 
-// tag::create[]
 		Workout workout = new Workout();
-		workout.name = "Red Jonson";
+		workout.name = "Juergen Hoeller";
 		workout.focus = Focus.ENDURANCE;
 
 		Workout saved = repository.save(workout);
 
-		assertThat(repository.findById(saved.id)
+		Optional<Workout> reloaded = repository.findById(saved.id);
+		assertThat(reloaded
 				.isPresent()).isTrue();
-// end::create[]
 
-// tag::update[]
-		saved.name = "Rod Johnson";
+		assertThat(saved.created).isNotNull();
+		assertThat(saved.createdBy).isNotNull();
+
+		assertThat(reloaded.get().created).isNotNull();
+		assertThat(reloaded.get().createdBy).isNotNull();
+
+		saved.name = "Jürgen Höller";
 		repository.save(saved);
 
-		repository.deleteById(saved.id);
-// end::update[]
+		reloaded = repository.findById(saved.id);
 
-		assertThat(repository.findById(saved.id)
-				.isPresent()).isFalse();
+		assertThat(saved.created).isNotNull();
+		assertThat(saved.createdBy).isNotNull();
+		assertThat(saved.modified).isNotNull();
+		assertThat(saved.modifiedBy).isNotNull();
+
+		assertThat(reloaded.get().created).isNotNull();
+		assertThat(reloaded.get().createdBy).isNotNull();
+		assertThat(reloaded.get().modified).isNotNull();
+		assertThat(reloaded.get().modifiedBy).isNotNull();
+
 	}
-
 }

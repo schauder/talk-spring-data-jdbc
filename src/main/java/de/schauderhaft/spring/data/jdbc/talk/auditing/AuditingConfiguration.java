@@ -13,31 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
+package de.schauderhaft.spring.data.jdbc.talk.auditing;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jdbc.mapping.model.NamingStrategy;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jdbc.repository.config.EnableJdbcAuditing;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
-// tag::main[]
-public class WithPrefixesConfiguration {
+// tag::enable[]
+@EnableJdbcRepositories
+@EnableJdbcAuditing
+class AuditingConfiguration {
+// end::enable[]
+
+	// tag::auditor[]
+	@Bean
+	AuditorAware<String> auditorAware() {
+		return () -> Optional.of("Jens Schauder");
+	}
+	// end::auditor[]
 
 	@Bean
-	public DataSource dataSource() {
+	DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
-				.addScript("create-prefixed-schema.sql")
+				.addScript("create-schema-with-audit-columns.sql")
 				.generateUniqueName(true)
 				.build();
 	}
 
 	@Bean
-	public NamingStrategy namespaceStrategy() {
-		return new PrefixNamingStrategy();
+	NamedParameterJdbcTemplate template(
+			DataSource db
+	) {
+		return new NamedParameterJdbcTemplate(db);
 	}
 }
+
+
 
