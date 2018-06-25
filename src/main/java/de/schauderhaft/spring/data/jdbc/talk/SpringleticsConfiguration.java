@@ -25,10 +25,10 @@ import javax.sql.DataSource;
 
 // tag::datasource[]
 @EnableJdbcRepositories
-public class SpringleticsConfiguration {
+class SpringleticsConfiguration {
 
 	@Bean
-	public DataSource dataSource() {
+	DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.HSQL)
 				.addScript("create-schema.sql")
@@ -36,10 +36,12 @@ public class SpringleticsConfiguration {
 				.build();
 	}
 	// end::datasource[]
-   // tag::template[]
+	// tag::template[]
 
 	@Bean
-	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource db) {
+	NamedParameterJdbcTemplate template(
+			DataSource db
+	) {
 		return new NamedParameterJdbcTemplate(db);
 	}
 	// end::template[]

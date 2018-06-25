@@ -34,13 +34,17 @@ public interface WorkoutRepository
 // end::main[]
 {
 	// tag::query[]
-	@Query("SELECT * FROM WORKOUT WHERE NAME like '%' || :name || '%'")
-	List<Workout> findByName(@Param("name") String name);
+	@Query("SELECT * FROM WORKOUT WHERE " +
+			"NAME like '%' || :name || '%'")
+	List<Workout> findByName(
+			@Param("name") String name
+	);
     // end::query[]
 
 	// tag::modifying[]
 	@Modifying
-	@Query("DELETE FROM WORKOUT WHERE NAME like '%' || :name || '%'")
+	@Query("DELETE FROM WORKOUT WHERE " +
+			"NAME like '%' || :name || '%'")
 	Long deleteByName(@Param("name") String name);
     // end::modifying[]
 
