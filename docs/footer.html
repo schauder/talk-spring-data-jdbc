@@ -88,6 +88,17 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .change .change{color:#66f}
 .CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.6.0/lib/css/zenburn.css" rel="stylesheet" /><script>document.write( '<link rel="stylesheet" href="reveal.js-3.6.0/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><script type="text/javascript">
     window.addEventListener("load", function() {
+    	Reveal.configure({
+          keyboard: {
+             39: 'next', // Right Arrow
+             37: 'prev'  // Left Arrow
+          }
+        });
+    } );
+</script>
+
+<script type="text/javascript">
+    window.addEventListener("load", function() {
 
         revealDiv = document.querySelector("body div.reveal")
         footer = document.getElementById("schauderhaft-footer");
