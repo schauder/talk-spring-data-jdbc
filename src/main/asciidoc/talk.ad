@@ -232,24 +232,34 @@ All statements get executed during the matching method call.
 No caching or anything.
 ====
 
-=== Methods in CrudRepository
-
-=== !
+=== CrudRepository Save Methods
 
 [source, java]
 ----
-<S extends T> S
-            save(S entity);
-<S extends T> Iterable<S>
-            saveAll(Iterable<S> entities);
+<S extends T> S           save(S entity);
+<S extends T> Iterable<S> saveAll(
+                    Iterable<S> entities);
+----
+
+=== CrudRepository Read Methods
+
+[source, java]
+----
 Optional<T> findById(ID id);
 boolean     existsById(ID id);
 Iterable<T> findAll();
 Iterable<T> findAllById(Iterable<ID> ids);
 long        count();
+----
+
+=== CrudRepository Delete Methods
+
+[source, java]
+----
 void        deleteById(ID id);
 void        delete(T entity);
-void        deleteAll(Iterable<? extends T> entities);
+void        deleteAll(Iterable<? extends T>
+                    entities);
 void        deleteAll();
 ----
 
@@ -257,29 +267,24 @@ void        deleteAll();
 
 image::name.png[canvas,size=contain]
 
-=== PrefixNamingStrategy
-
 === !
 
-[source, java, indent=0, tabsize=2]
+[source, java]
 ----
-include::{main-incl}namingstrategy/PrefixNamingStrategy.java[tags=naming]
+public interface NamingStrategy {
+    String getSchema();
+    String getTableName(Class<?> type);
+    String getQualifiedTableName(Class<?> type);
+    
+    String getColumnName(
+        JdbcPersistentProperty property);
+    String getReverseColumnName(
+        JdbcPersistentProperty property);
+    String getKeyColumn(
+        JdbcPersistentProperty property);
+}
 ----
 
-=== Dynamic NamingStrategy
-
-[source, java, indent=0, tabsize=2]
-----
-private final ThreadLocal<String> schema = new ThreadLocal<>();
-
-new NamingStrategy() {
-
-	@Override
-	public String getSchema() {
-		return schema.get();
-	}
-};
-----
 
 == Non trivial Aggregates
 
@@ -634,8 +639,6 @@ image::future.png[canvas,size=contain]
 
 Not promising anything.
 
-=== Auditing
-
 === Better CRUD
 
 upserts?
@@ -650,47 +653,84 @@ upserts?
 
 === Spring Boot Support
 
-PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
+Outdated PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
 
-== TOQAEFT
+== Is there reactive support?
 
-image::question.png[canvas,size=contain]
-
-The One Question Asked Every Freaking Time
-
-=== Is there reactive support?
-
-=== Not yet
+=== The problem
 
 === JDBC is blocking
 
-Might wrap it in a `ThreadPool`
+Could be wrapped in a `ThreadPool` which would be a compromise.
 
-=== Oracle Works on an Async SQL-API
+=== JPA won't happen
 
-Not Flow/Reactive Stream based
+The whole approach is opposite to reactive.
 
-https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false[Java One Slides]
+=== ADBA
+
+*A*synchronous *D*ata*B*ase *A*pi being developed by Oracle
+
+Java One Slides: https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false
 
 Mailing List: http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss
 
-http://hg.openjdk.java.net/jdk/sandbox/file/b49fd5dbaab6/src/java.sql/share/classes/java/sql2[repository]
+Repository: http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes
+
+Manually maintained mirror on github: https://github.com/pull-vert/adba-mirror
 
 [NOTE.speaker]
 ====
-It really feels like Oracle is on its very own agenda here.
-
-Everybody interested in reactive and Lukas Eder looked at it.
-Most feedback didn't had much of an effect.
 
 No visible feedback from other database vendors.
+
+Pushed back against reactive at first.
+Now it seems they changed their minds.
+
+Everybody is curious, I guess.
 ====
+
+=== AoJ
+
+**A**DBA **o**ver **J**DBC
+
+An rudimentary implementation of ADBA based on JDBC.
+
+https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ
 
 === R2DBC
 
 **R**eactive **R**elational **D**atabase **C**onnectivity
 
-There is a project exploring possibilities: https://github.com/nebhale/r2dbc
+Github Orga: https://github.com/r2dbc
+
+=== R2DBC Contributers
+
+ * Pivotal (Spring, Spring Data, Reactor)
+ * jOOQ (Lukas Eder)
+ * RxJava (Dávid Karnok)
+
+=== R2DBC Experimental Implementations
+
+Postgres https://github.com/r2dbc/r2dbc-postgresql
+
+Planned: R2DBC over ADBA
+
+=== R2DBC @ Spring Data
+
+Database Client inspired by Webclient.
+
+Reactive Relational Repositories.
+
+Happy Paths in https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc
+
+=== Reactive Wrap up
+
+Lot's is happening.
+
+Many parties involved.
+
+Nothing that is production ready in the near future.
 
 == References
 
