@@ -217,7 +217,7 @@ wo = changeWorkout(wo);
 repository.save(wo);</code></pre></div></div>
 <aside class="notes"><div class="paragraph"><p>create, save</p></div>
 <div class="paragraph"><p>change, save again</p></div>
-<div class="paragraph"><p>Question: How should the statements look like?</p></div></aside></section><section id="_sql_statments"><h2>SQL Statments</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="sql language-sql">// first save
+<div class="paragraph"><p>Question: How should the statements look like?</p></div></aside></section><section id="_sql_statements"><h2>SQL Statements</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="sql language-sql">// first save
 <span class="class">INSERT</span> <span class="class">INTO</span> Workout (name, focus) <span class="keyword">VALUES</span> (<span class="error">?</span>, <span class="error">?</span>)
 <span class="class">INSERT</span> <span class="class">INTO</span> Exercise (name, description, Workout, Workout_key) <span class="keyword">VALUES</span> (<span class="error">?</span>, <span class="error">?</span>, <span class="error">?</span>, <span class="error">?</span>)
 
