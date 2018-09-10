@@ -4,7 +4,7 @@ CREATE TABLE Workout (
   focus VARCHAR(20),
   created DATETIME,
   modified DATETIME,
-  createdby VARCHAR(20),
-  modifiedby VARCHAR(20)
+  created_by VARCHAR(20),
+  modified_by VARCHAR(20)
 );
 INSERT INTO workout (name) VALUES ('Starbuxman');

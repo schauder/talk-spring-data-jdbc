@@ -16,7 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 
 import org.springframework.context.ApplicationListener;
-import org.springframework.data.jdbc.mapping.event.AfterLoadEvent;
+import org.springframework.data.relational.core.mapping.event.AfterLoadEvent;
 import org.springframework.stereotype.Component;
 
 /**

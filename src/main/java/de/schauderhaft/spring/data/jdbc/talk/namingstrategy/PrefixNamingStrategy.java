@@ -16,9 +16,8 @@
 package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
 
 import de.schauderhaft.spring.data.jdbc.talk.Workout;
-import org.springframework.data.jdbc.mapping.model.JdbcPersistentProperty;
-import org.springframework.data.jdbc.mapping.model.NamingStrategy;
-import org.springframework.stereotype.Component;
+import org.springframework.data.relational.core.mapping.NamingStrategy;
+import org.springframework.data.relational.core.mapping.RelationalPersistentProperty;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,7 +35,7 @@ class PrefixNamingStrategy implements NamingStrategy {
 
 	{ columnPrefix.put(Workout.class, "WO"); }
 
-	public String getColumnName(JdbcPersistentProperty property) {
+	public String getColumnName(RelationalPersistentProperty property) {
 		return columnPrefix.get(property.getOwner().getType())
 				+ "_"
 				+ NamingStrategy.super.getColumnName(property);

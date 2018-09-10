@@ -17,6 +17,7 @@ package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -25,7 +26,7 @@ import javax.sql.DataSource;
 
 // tag::datasource[]
 @EnableJdbcRepositories
-class SpringleticsConfiguration {
+class SpringleticsConfiguration extends JdbcConfiguration {
 
 	@Bean
 	DataSource dataSource() {
@@ -45,6 +46,8 @@ class SpringleticsConfiguration {
 		return new NamedParameterJdbcTemplate(db);
 	}
 	// end::template[]
+
+
 }
 
 

@@ -4,11 +4,11 @@ CREATE TABLE Workout (
   focus VARCHAR(20)
 );
 
-CREATE TABLE ExerciseInterval (
+CREATE TABLE Exercise_Interval (
   workout INTEGER,
   workout_key INTEGER,
   repetitions INTEGER,
-  exerciseId INTEGER
+  exercise_Id INTEGER
 );
 
 CREATE TABLE Exercise (

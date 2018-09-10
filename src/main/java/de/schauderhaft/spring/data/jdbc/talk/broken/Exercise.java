@@ -16,11 +16,13 @@
 package de.schauderhaft.spring.data.jdbc.talk.broken;
 
 import lombok.Value;
+import lombok.experimental.Wither;
 
 /**
  * @author Jens Schauder
  */
 @Value
+@Wither
 public class Exercise {
 	String name;
 }

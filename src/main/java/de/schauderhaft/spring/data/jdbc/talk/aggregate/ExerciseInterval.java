@@ -16,11 +16,13 @@
 package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 
 import lombok.Value;
+import lombok.experimental.Wither;
 
 /**
  * @author Jens Schauder
  */
 @Value
+@Wither
 public class ExerciseInterval {
 	int repetitions;
 	long exerciseId;

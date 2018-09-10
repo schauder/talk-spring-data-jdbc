@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -27,7 +28,7 @@ import javax.sql.DataSource;
 
 // tag::main[]
 @EnableJdbcRepositories
-public class BrokenConfiguration {
+public class BrokenConfiguration extends JdbcConfiguration {
 
 	@Bean
 	public DataSource dataSource() {
