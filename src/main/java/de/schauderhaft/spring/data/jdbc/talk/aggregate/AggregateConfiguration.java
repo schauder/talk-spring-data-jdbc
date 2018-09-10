@@ -18,6 +18,7 @@ package de.schauderhaft.spring.data.jdbc.talk.aggregate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
+import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -27,7 +28,7 @@ import javax.sql.DataSource;
 // tag::main[]
 @EnableJdbcRepositories
 @ComponentScan
-public class AggregateConfiguration {
+public class AggregateConfiguration extends JdbcConfiguration {
 
 	@Bean
 	public DataSource dataSource() {

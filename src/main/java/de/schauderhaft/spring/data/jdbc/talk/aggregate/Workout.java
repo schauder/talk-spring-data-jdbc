@@ -46,7 +46,7 @@ public class Workout {
 	private String name;
 	private Focus focus;
 
-	private final List<ExerciseInterval> exercises = new ArrayList<>();
+	private List<ExerciseInterval> exercises = new ArrayList<>();
 
 	Workout(String name, Focus focus) {
 		this.name = name;

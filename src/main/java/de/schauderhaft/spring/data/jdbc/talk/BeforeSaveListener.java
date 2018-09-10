@@ -16,7 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk;
 
 import org.springframework.context.ApplicationListener;
-import org.springframework.data.jdbc.mapping.event.BeforeSaveEvent;
+import org.springframework.data.relational.core.mapping.event.BeforeSaveEvent;
 import org.springframework.stereotype.Component;
 
 /**

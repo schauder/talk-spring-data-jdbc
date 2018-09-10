@@ -23,9 +23,11 @@ import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jdbc.core.DataAccessStrategy;
-import org.springframework.data.jdbc.mapping.model.JdbcMappingContext;
 import org.springframework.data.jdbc.mybatis.MyBatisContext;
 import org.springframework.data.jdbc.mybatis.MyBatisDataAccessStrategy;
+import org.springframework.data.relational.core.conversion.RelationalConverter;
+import org.springframework.data.relational.core.mapping.RelationalMappingContext;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 
 import javax.sql.DataSource;
 
@@ -61,11 +63,10 @@ public class WithMyBatisConfiguration {
 	// tag::mybatis3[]
 	@Bean
 	DataAccessStrategy dataAccessStrategy(
-			JdbcMappingContext context,
-			SqlSession sqlSession
-	) {
+			RelationalMappingContext context,
+			RelationalConverter converter, NamedParameterJdbcOperations operations, SqlSession sqlSession) {
 		return MyBatisDataAccessStrategy
-				.createCombinedAccessStrategy(context, sqlSession);
+				.createCombinedAccessStrategy(context, converter, operations, sqlSession);
 	}
 	// tag::mybatis3[]
 }

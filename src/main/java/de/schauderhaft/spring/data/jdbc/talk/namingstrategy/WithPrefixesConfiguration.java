@@ -16,8 +16,7 @@
 package de.schauderhaft.spring.data.jdbc.talk.namingstrategy;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jdbc.mapping.model.NamingStrategy;
+import org.springframework.data.relational.core.mapping.NamingStrategy;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
