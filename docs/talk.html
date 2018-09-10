@@ -108,7 +108,7 @@ table.CodeRay td.code>pre{padding:0}
 </script>
 <div id="schauderhaft-footer" class="footer">
     <span class="element">@jensschauder</span>
-    <span class="element">@JUGNBG</span>
+    <span class="element">@JUG_DA</span>
     <span class="element">#sd-jdbc</span>
 </div>
 <div class="paragraph"><p>&#160;<br />
@@ -123,10 +123,10 @@ table.CodeRay td.code>pre{padding:0}
 <section><section id="_consider_spring_data_jdbc" data-background-image="images/meter.png" data-background-size="contain"><h2>Consider Spring Data JDBC</h2><div class="paragraph"><p>if you &#8230;&#8203;</p></div></section><section id="_want_to_custom_code_most_sql_anyway"><h2>want to custom code most SQL anyway</h2></section><section id="_find_yourself_fighting_jpa"><h2>find yourself fighting JPA</h2></section><section id="_want_to_have_ddd_aggregates"><h2>want to have DDD Aggregates</h2><div class="paragraph"><p>(but still want to use a RDBMS)</p></div></section></section>
 <section><section id="_crudrepository"><h2>CrudRepository</h2></section><section id="_dependencies"><h2>Dependencies</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="tag">&lt;groupId&gt;</span>org.springframework.data<span class="tag">&lt;/groupId&gt;</span>
 <span class="tag">&lt;artifactId&gt;</span>spring-data-jdbc<span class="tag">&lt;/artifactId&gt;</span>
-<span class="tag">&lt;version&gt;</span>1.0.0.M3<span class="tag">&lt;/version&gt;</span></code></pre></div></div></section><section id="_the_usual_suspects"><h2>The usual suspects</h2><div class="ulist"><ul><li><p>hsqldb</p></li><li><p>lombok</p></li><li><p>junit</p></li><li><p>spring-test</p></li><li><p>assertj</p></li></ul></div>
+<span class="tag">&lt;version&gt;</span>1.0.0.RC2<span class="tag">&lt;/version&gt;</span></code></pre></div></div></section><section id="_the_usual_suspects"><h2>The usual suspects</h2><div class="ulist"><ul><li><p>hsqldb</p></li><li><p>lombok</p></li><li><p>junit</p></li><li><p>spring-test</p></li><li><p>assertj</p></li></ul></div>
 <aside class="notes"><div class="paragraph"><p>These are just my choices,
 of course you can pick what ever you want.</p></div></aside></section><section id="_configuration"><h2>Configuration</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@EnableJdbcRepositories</span>
-<span class="type">class</span> <span class="class">SpringleticsConfiguration</span> {
+<span class="type">class</span> <span class="class">SpringleticsConfiguration</span> <span class="directive">extends</span> JdbcConfiguration {
 
   <span class="annotation">@Bean</span>
   <span class="predefined-type">DataSource</span> dataSource() {
@@ -252,7 +252,7 @@ The root can thus ensure the integrity of the aggregate as a whole.</p></div></b
 <section><section id="_auditing"><h2>Auditing</h2><aside class="notes"><div class="paragraph"><p>Not Envers like historization</p></div>
 <div class="paragraph"><p>Just simple setting of created/modified timestamps and users</p></div></aside></section><section id="_enable_auditing_support"><h2>Enable Auditing Support</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@EnableJdbcRepositories</span>
 <span class="annotation">@EnableJdbcAuditing</span>
-<span class="type">class</span> <span class="class">AuditingConfiguration</span> {</code></pre></div></div></section><section id="_add_fields"><h2>Add fields</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@CreatedDate</span> Instant created;
+<span class="type">class</span> <span class="class">AuditingConfiguration</span> <span class="directive">extends</span> JdbcConfiguration {</code></pre></div></div></section><section id="_add_fields"><h2>Add fields</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java"><span class="annotation">@CreatedDate</span> Instant created;
 <span class="annotation">@LastModifiedDate</span> Instant modified;
 
 <span class="annotation">@CreatedBy</span> <span class="predefined-type">String</span> createdBy;
@@ -290,11 +290,10 @@ SqlSessionTemplate session(SqlSessionFactory factory) {
   <span class="keyword">return</span> <span class="keyword">new</span> SqlSessionTemplate(factory);
 }</code></pre></div></div></section><section id="_context_3"><h2>Context</h2><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">  <span class="annotation">@Bean</span>
   DataAccessStrategy dataAccessStrategy(
-      JdbcMappingContext context,
-      SqlSession sqlSession
-  ) {
+      RelationalMappingContext context,
+      RelationalConverter converter, NamedParameterJdbcOperations operations, SqlSession sqlSession) {
     <span class="keyword">return</span> MyBatisDataAccessStrategy
-        .createCombinedAccessStrategy(context, sqlSession);
+        .createCombinedAccessStrategy(context, converter, operations, sqlSession);
   }
 }</code></pre></div></div></section><section id="_mapping"><h2>Mapping</h2></section><section><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="xml language-xml"><span class="preprocessor">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span>
 <span class="doctype">&lt;!DOCTYPE mapper
