@@ -8,11 +8,7 @@
     <name>Spring Data Jdbc Talk</name>
     <description>Slides for a talk introducing Spring Data Jdbc
     </description>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.0.RELEASE</version>
-	</parent>
+
     <properties>
         <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,11 +25,6 @@
 
 	<dependencies>
 		<!-- when using boot we need to overwrite the Spring Data version to use the one Spring Data JDBC is build on. -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>2.1.0.RC2</version>
-		</dependency>
 		<dependency>
 		<!-- tag::sdjdbc[] -->
 			<groupId>org.springframework.data</groupId>
@@ -74,16 +65,6 @@
 
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-
-
-		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
@@ -92,17 +73,12 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>5.0.2.RELEASE</version>
+			<version>5.0.4.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>3.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-			<version>2.0.0.BUILD-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
