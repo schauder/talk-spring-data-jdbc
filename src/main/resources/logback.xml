@@ -5,8 +5,7 @@
 		</encoder>
 	</appender>
 
-	<logger name="org.springframework.jdbc.core.JdbcTemplate" level="DEBUG"/>
-	<logger name="de.schauderhaft.spring.data.jdbc.talk.WorkoutMapper" level="DEBUG" />
+	<logger name="org.springframework.jdbc.core" level="trace"/>
 
 
 	<root level="INFO">

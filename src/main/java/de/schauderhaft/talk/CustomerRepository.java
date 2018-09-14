@@ -13,19 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.aggregate;
+package de.schauderhaft.talk;
 
-import org.springframework.data.annotation.Id;
+import org.springframework.data.jdbc.repository.query.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * @author Jens Schauder
  */
-public class Exercise {
-	@Id
-	Long id;
-	String name;
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
-	public Exercise(String name) {
-		this.name = name;
-	}
+	@Query("select count(*) from address")
+	int countAddresses();
+
+
+	@Query("select id, first_name, dob from customer where upper(first_name) like '%' || upper(:name) || '%' ")
+	List<Customer> findByName(@Param("name") String name);
 }

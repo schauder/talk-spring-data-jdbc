@@ -13,15 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.broken;
+package de.schauderhaft.talk;
+
+import org.springframework.data.repository.CrudRepository;
 
 /**
- * The focus of a {@link Workout}.
- *
  * @author Jens Schauder
  */
-public enum Focus {
-	ENDURANCE,
-	STRENGTH,
-	BOTH
+public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, Long> {
+
 }

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.demo;
-
-import org.springframework.data.repository.CrudRepository;
+package de.schauderhaft.talk;
 
 /**
  * @author Jens Schauder
  */
-public interface PurchaseOrderRepository extends CrudRepository<PurchaseOrder, Long> {
-
+public class Address {
+	String street;
+	String city;
+	String zip;
 }

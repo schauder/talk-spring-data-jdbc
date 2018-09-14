@@ -13,36 +13,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.aggregate;
+package de.schauderhaft.talk;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
-// tag::main[]
+/**
+ * @author Jens Schauder
+ */
+@Configuration
 @EnableJdbcRepositories
-@ComponentScan
-public class AggregateConfiguration extends JdbcConfiguration {
+public class CustomerConfig extends JdbcConfiguration {
 
 	@Bean
-	public DataSource dataSource() {
+	DataSource dataSource(){
 		return new EmbeddedDatabaseBuilder()
-				.setType(EmbeddedDatabaseType.HSQL)
-				.addScript("create-aggregate-schema.sql")
 				.generateUniqueName(true)
+				.setType(EmbeddedDatabaseType.HSQL)
+				.addScript("create-customer-schema.sql")
 				.build();
 	}
 
 	@Bean
-	public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource db) {
-		return new NamedParameterJdbcTemplate(db);
+	NamedParameterJdbcOperations operations() {
+		return new NamedParameterJdbcTemplate(dataSource());
 	}
-	// end::main[]
-}
 
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
+	}
+}
