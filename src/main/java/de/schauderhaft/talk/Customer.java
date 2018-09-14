@@ -13,22 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk;
+package de.schauderhaft.talk;
 
-import org.springframework.context.ApplicationListener;
-import org.springframework.data.relational.core.mapping.event.BeforeSaveEvent;
-import org.springframework.stereotype.Component;
+import org.springframework.data.annotation.Id;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Jens Schauder
  */
-@Component
-// tag::main[]
-class BeforeSaveListener
-		implements ApplicationListener<BeforeSaveEvent> {
-	@Override
-	public void onApplicationEvent(BeforeSaveEvent event) {
-		// do what ever you want
-	}
+public class Customer {
+	@Id
+	Long id;
+
+	String firstName;
+
+	LocalDate dob;
+
+	Map<String, Address> addresses = new HashMap<>();
 }
-// end::main[]

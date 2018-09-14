@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.demo;
+package de.schauderhaft.talk;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,6 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * @author Jens Schauder
  */
 @RunWith(SpringJUnit4ClassRunner.class)
+@Transactional
 @ContextConfiguration(classes = CustomerConfig.class)
 public class CustomerRepositoryTest {
 
@@ -41,6 +44,51 @@ public class CustomerRepositoryTest {
 
 	}
 
+	@Test
+	public void createSimpleCustomer() {
+
+		Customer customer = new Customer();
+		customer.dob = LocalDate.of(1904, 5, 14);
+		customer.firstName = "Albert";
+
+		Customer saved = customerRepo.save(customer);
+
+		assertThat(saved.id).isNotNull();
+
+		saved.firstName = "Hans Albert";
+
+		customerRepo.save(saved);
+
+		Optional<Customer> reloaded = customerRepo.findById(saved.id);
+
+		assertThat(reloaded).isNotEmpty();
+
+		assertThat(reloaded.get().firstName).isEqualTo("Hans Albert");
+	}
+
+	@Test
+	public void findByName() {
+
+		Customer customer = new Customer();
+		customer.dob = LocalDate.of(1904, 5, 14);
+		customer.firstName = "Albert";
+
+		Customer saved = customerRepo.save(customer);
+
+		assertThat(saved.id).isNotNull();
+
+		customer.firstName = "Bertram";
+		customer.id= null;
+
+		customerRepo.save(customer);
+
+		customer.firstName = "Beth";
+		customer.id= null;
+
+		customerRepo.save(customer);
+
+		assertThat(customerRepo.findByName("bert")).hasSize(2);
+	}
 
 	@Test
 	public void createACustomer() {
@@ -55,6 +103,27 @@ public class CustomerRepositoryTest {
 		saved.firstName = "Heinz Paul";
 
 		customerRepo.save(saved);
+	}
+
+	@Test
+	public void cloningACustomer(){
+
+		Customer customer = createCustomer();
+		customer.addresses.put("Main", createAddress());
+		customer.addresses.put("Other", createAddress());
+		customer.addresses.get("Other").city = "Bielefeld";
+
+		customerRepo.save(customer);
+
+		customer.id = null;
+
+		customerRepo.save(customer);
+
+		Iterable<Customer> all = customerRepo.findAll();
+
+		assertThat(all).hasSize(2);
+
+		assertThat(customerRepo.countAddresses()).isEqualTo(4);
 	}
 
 	@Test

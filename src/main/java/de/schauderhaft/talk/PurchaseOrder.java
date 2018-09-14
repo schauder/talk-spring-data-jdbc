@@ -13,13 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package de.schauderhaft.spring.data.jdbc.talk.auditing;
+package de.schauderhaft.talk;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.annotation.Id;
 
 /**
  * @author Jens Schauder
  */
-public interface AuditingWorkoutRepository
-		extends CrudRepository<Workout, Long> {
+public class PurchaseOrder {
+	@Id
+	Long id;
+	Long customerRef;
 }
