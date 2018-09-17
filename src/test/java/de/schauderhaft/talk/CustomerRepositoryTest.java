@@ -25,8 +25,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import static java.util.Arrays.asList;
-import static org.assertj.core.api.Assertions.assertThat;
+import static java.util.Arrays.*;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * @author Jens Schauder
@@ -36,8 +36,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = CustomerConfig.class)
 public class CustomerRepositoryTest {
 
-	@Autowired CustomerRepository customerRepo;
-	@Autowired PurchaseOrderRepository poRepo;
+	@Autowired
+	CustomerRepository customerRepo;
+
+	@Autowired
+	PurchaseOrderRepository poRepo;
+
+	@Autowired
+	ModifiableAuditorAware currentUser;
 
 	@Test
 	public void contextLoads() {
@@ -78,12 +84,12 @@ public class CustomerRepositoryTest {
 		assertThat(saved.id).isNotNull();
 
 		customer.firstName = "Bertram";
-		customer.id= null;
+		customer.id = null;
 
 		customerRepo.save(customer);
 
 		customer.firstName = "Beth";
-		customer.id= null;
+		customer.id = null;
 
 		customerRepo.save(customer);
 
@@ -106,7 +112,7 @@ public class CustomerRepositoryTest {
 	}
 
 	@Test
-	public void cloningACustomer(){
+	public void cloningACustomer() {
 
 		Customer customer = createCustomer();
 		customer.addresses.put("Main", createAddress());
@@ -130,13 +136,25 @@ public class CustomerRepositoryTest {
 	public void purchaseOrder() {
 		Customer customer = customerRepo.save(createCustomer());
 		PurchaseOrder po1 = new PurchaseOrder();
-		po1.customerRef  = customer.id;
+		po1.customerRef = customer.id;
 
 		PurchaseOrder po2 = new PurchaseOrder();
 		po2.customerRef = customer.id;
 
 		poRepo.saveAll(asList(po1, po2));
 	}
+
+	@Test
+	public void auditing() {
+
+		currentUser.setValue("Someone");
+
+		Customer customer = customerRepo.save(createCustomer());
+
+		assertThat(customer.createdAt).isNotNull();
+		assertThat(customer.createdBy).isEqualTo("Someone");
+	}
+
 
 	private Address createAddress() {
 		Address address = new Address();

@@ -15,9 +15,14 @@
  */
 package de.schauderhaft.talk;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +30,8 @@ import java.util.Map;
 /**
  * @author Jens Schauder
  */
-public class Customer {
+class Customer {
+
 	@Id
 	Long id;
 
@@ -34,6 +40,17 @@ public class Customer {
 	LocalDate dob;
 
 	Map<String, Address> addresses = new HashMap<>();
+
+	// relevant for Auditing only
+	@CreatedBy
+	String createdBy;
+	@CreatedDate
+	Instant createdAt;
+	@LastModifiedBy
+	String updatedBy;
+	@LastModifiedDate
+	Instant updatedAt;
+
 
 
 	// part of the event examples

@@ -19,11 +19,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.data.jdbc.repository.config.EnableJdbcAuditing;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
 import org.springframework.data.relational.core.mapping.event.AfterLoadEvent;
-import org.springframework.data.relational.core.mapping.event.BeforeSaveEvent;
-import org.springframework.data.relational.core.mapping.event.RelationalEventWithEntity;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -38,10 +38,11 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableJdbcRepositories
+@EnableJdbcAuditing
 public class CustomerConfig extends JdbcConfiguration {
 
 	@Bean
-	DataSource dataSource(){
+	DataSource dataSource() {
 		return new EmbeddedDatabaseBuilder()
 				.generateUniqueName(true)
 				.setType(EmbeddedDatabaseType.HSQL)
@@ -69,5 +70,11 @@ public class CustomerConfig extends JdbcConfiguration {
 				((Customer) entity).setPurchaseOrderRepository(context.getBean(PurchaseOrderRepository.class));
 			}
 		};
+	}
+
+	// Auditor
+	@Bean
+	AuditorAware<String> auditorAware() {
+		return new ModifiableAuditorAware();
 	}
 }
