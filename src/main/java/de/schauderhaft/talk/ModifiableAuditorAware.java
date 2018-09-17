@@ -15,23 +15,23 @@
  */
 package de.schauderhaft.talk;
 
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.AuditorAware;
+import org.springframework.stereotype.Component;
 
-import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Jens Schauder
  */
-public interface CustomerRepository extends CrudRepository<Customer, Long> {
+public class ModifiableAuditorAware implements AuditorAware<String> {
+	private String value;
 
-	@Query("select count(*) from address")
-	int countAddresses();
+	@Override
+	public Optional<String> getCurrentAuditor() {
+		return Optional.ofNullable(value);
+	}
 
-
-	@Query("select id, first_name, dob " +
-			", created_at, created_by, updated_by, updated_at " +
-			"from customer where upper(first_name) like '%' || upper(:name) || '%' ")
-	List<Customer> findByName(@Param("name") String name);
+	public void setValue(String value) {
+		this.value = value;
+	}
 }
