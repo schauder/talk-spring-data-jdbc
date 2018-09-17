@@ -16,6 +16,7 @@
 package de.schauderhaft.talk;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -33,4 +34,14 @@ public class Customer {
 	LocalDate dob;
 
 	Map<String, Address> addresses = new HashMap<>();
+
+
+	// part of the event examples
+	@Transient
+	private PurchaseOrderRepository purchaseOrderRepository;
+
+	void setPurchaseOrderRepository(PurchaseOrderRepository purchaseOrderRepository) {
+
+		this.purchaseOrderRepository = purchaseOrderRepository;
+	}
 }

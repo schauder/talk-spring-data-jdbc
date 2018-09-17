@@ -15,10 +15,15 @@
  */
 package de.schauderhaft.talk;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.data.jdbc.repository.config.JdbcConfiguration;
+import org.springframework.data.relational.core.mapping.event.AfterLoadEvent;
+import org.springframework.data.relational.core.mapping.event.BeforeSaveEvent;
+import org.springframework.data.relational.core.mapping.event.RelationalEventWithEntity;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -52,5 +57,17 @@ public class CustomerConfig extends JdbcConfiguration {
 	@Bean
 	public PlatformTransactionManager transactionManager() {
 		return new DataSourceTransactionManager(dataSource());
+	}
+
+	// Events
+	@Bean
+	ApplicationListener<AfterLoadEvent> injectRepository(ApplicationContext context) {
+
+		return event -> {
+			Object entity = event.getEntity();
+			if (entity instanceof Customer) {
+				((Customer) entity).setPurchaseOrderRepository(context.getBean(PurchaseOrderRepository.class));
+			}
+		};
 	}
 }
