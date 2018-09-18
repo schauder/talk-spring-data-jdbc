@@ -5,9 +5,9 @@
 :talk-tag: #sd-jdbc
 :slide-link: http://bit.ly/talk-sd-jdbc
 :linkattrs:
-:main-incl: {src-incl}/src/main/java/de/schauderhaft/spring/data/jdbc/talk/
-:test-incl: {src-incl}/src/test/java/de/schauderhaft/spring/data/jdbc/talk/
-:res-incl: {src-incl}/src/main/resources/
+:main-incl: {src-incl}src/main/java/de/schauderhaft/talk/
+:test-incl: {src-incl}src/test/java/de/schauderhaft/talk/
+:res-incl: {src-incl}src/main/resources/
 
 include::footer.ad[]
 
@@ -227,38 +227,17 @@ In the database you might consider
 * deferred constraints.
 ====
 
-=== But I don't like that!
+=== Effects
 
-* That's ok.
+* Makes Aggregates obvious in code
 
-Use
+* Easier testing (no huge chains of dependencies)
 
-* `@Query`
-
-* Custom method implementations
-
-* Custom base repository
-
-=== Just consider for a moment
-
-* It is a strong constraint
-
-* It might improve your architecture
-
-[NOTE.speaker]
-====
-* Makes bounds of aggregates really obvious.
-
-* Greatly simplifies things like test setup for integration tests.
-
-* Allows complete change of persistence strategy for one aggregate, while keeping others as they are.
-====
+* Allows to pick a persistence strategy per Aggregate
 
 == Events
 
 image::event.png[canvas,size=contain]
-
-=== Demo
 
 === Available Events
 
@@ -299,29 +278,34 @@ Just simple setting of created/modified timestamps and users
 
 === Enable Auditing Support
 
-[source, java, indent=0, tabsize=2]
-----
-include::{main-incl}auditing/AuditingConfiguration.java[tags=enable]
-----
+`@EnableJdbcAuditing`
 
 === Add fields
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}auditing/Workout.java[tags=fields]
+include::{main-incl}Customer.java[tags=fields]
 ----
 
 === Register `AuditAware`
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}auditing/AuditingConfiguration.java[tags=auditor]
+include::{main-incl}CustomerConfig.java[tags=auditor]
 ----
 
+=== `AuditAware` example
+
+[source, java, indent=0, tabsize=2]
+----
+include::{main-incl}ModifiableAuditorAware.java[tags=auditor]
+----
 
 == MyBatis
 
-=== Thanks!
+image::mybatis.png[canvas,size=contain]
+
+=== Thanks to
 
 **Kazuki Shimizu**
 
@@ -335,29 +319,12 @@ image::select.png[canvas,size=contain]
 
 [source, java, indent=0, tabsize=2]
 ----
-include::{main-incl}WorkoutRepository.java[tags=query]
+include::{main-incl}CustomerRepository.java[tags=query]
 ----
 
 === `@Modifying`
 
-[source, java, indent=0, tabsize=2]
-----
-include::{main-incl}WorkoutRepository.java[tags=modifying]
-----
-
 === RowMapper
-
-[source, java, indent=0, tabsize=2]
-----
-include::{main-incl}WorkoutRepository.java[tags=rowmapper1]
-----
-
-=== RowMapper
-
-[source, java, indent=0, tabsize=2]
-----
-include::{main-incl}WorkoutRepository.java[tags=rowmapper2]
-----
 
 == (Maybe) upcoming
 
@@ -385,7 +352,7 @@ Is part of the `2.1.x` Milestone
 
 == Is there reactive support?
 
-=== The problem
+=== The challenge
 
 === JDBC is blocking
 
