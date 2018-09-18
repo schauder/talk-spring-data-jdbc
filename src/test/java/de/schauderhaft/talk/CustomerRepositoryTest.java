@@ -147,7 +147,7 @@ public class CustomerRepositoryTest {
 	@Test
 	public void auditing() {
 
-		currentUser.setValue("Someone");
+		currentUser.value = "Someone";
 
 		Customer customer = customerRepo.save(createCustomer());
 

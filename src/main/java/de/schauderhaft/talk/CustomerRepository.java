@@ -26,8 +26,10 @@ import java.util.List;
  */
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
+	// tag::query[]
 	@Query("select count(*) from address")
 	int countAddresses();
+	// end::query[]
 
 
 	@Query("select id, first_name, dob " +

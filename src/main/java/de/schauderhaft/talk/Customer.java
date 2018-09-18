@@ -42,6 +42,7 @@ class Customer {
 	Map<String, Address> addresses = new HashMap<>();
 
 	// relevant for Auditing only
+	// tag::fields[]
 	@CreatedBy
 	String createdBy;
 	@CreatedDate
@@ -50,7 +51,7 @@ class Customer {
 	String updatedBy;
 	@LastModifiedDate
 	Instant updatedAt;
-
+	// end::fields[]
 
 
 	// part of the event examples

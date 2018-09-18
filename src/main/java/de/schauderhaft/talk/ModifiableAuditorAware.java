@@ -15,6 +15,7 @@
  */
 package de.schauderhaft.talk;
 
+import lombok.Setter;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
@@ -23,15 +24,15 @@ import java.util.Optional;
 /**
  * @author Jens Schauder
  */
-public class ModifiableAuditorAware implements AuditorAware<String> {
-	private String value;
+// tag::auditor[]
+public class ModifiableAuditorAware
+		implements AuditorAware<String> {
+
+	String value;
 
 	@Override
 	public Optional<String> getCurrentAuditor() {
 		return Optional.ofNullable(value);
 	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
 }
+// end::auditor[]

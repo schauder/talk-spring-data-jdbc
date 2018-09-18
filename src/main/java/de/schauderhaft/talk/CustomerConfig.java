@@ -72,9 +72,10 @@ public class CustomerConfig extends JdbcConfiguration {
 		};
 	}
 
-	// Auditor
+	// tag::auditor[]
 	@Bean
 	AuditorAware<String> auditorAware() {
 		return new ModifiableAuditorAware();
 	}
+	// end::auditor[]
 }
