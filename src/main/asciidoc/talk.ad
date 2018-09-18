@@ -165,6 +165,15 @@ One to one and one to many are fine though.
 Don't run away, there are reasons for this.
 ====
 
+=== Aggregate
+
+[quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
+____
+
+Aggregate is a pattern in Domain-Driven Design.
+A DDD aggregate is a cluster of domain objects that can be treated as a single unit.
+____
+
 === Repositories work on Aggregates
 
 [quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
@@ -175,20 +184,6 @@ ____
 [NOTE.speaker]
 ====
 When ever you load or save something, you are dealing with complete aggregates.
-====
-
-=== Aggregate
-
-[quote, "Martin Fowler", https://martinfowler.com/bliki/DDD_Aggregate.html]
-____
-
-Aggregate is a pattern in Domain-Driven Design.
-A DDD aggregate is a cluster of domain objects that can be treated as a single unit.
-____
-
-[NOTE.speaker]
-====
-An entity is either part of one or the other aggregate, but it can never be part of the two aggregates.
 ====
 
 === Aggregate Root
@@ -203,7 +198,8 @@ ____
 
 [NOTE.speaker]
 ====
-If from inside of one aggregate you don't touch the stuff of another aggregate.
+If from inside of one aggregate you don't touch or reference the stuff of another aggregate.
+If something has references from two aggregates it must be an AggregateRoot itself.
 ====
 
 === Many to X relations
@@ -363,18 +359,6 @@ include::{main-incl}WorkoutRepository.java[tags=rowmapper1]
 include::{main-incl}WorkoutRepository.java[tags=rowmapper2]
 ----
 
-== Integration with SD-Rest
-
-image::rest.png[canvas,size=contain]
-
-Make it a bootiful Webapplication
-
-=== Spring Data JDBC specific
-
-Almost nothing.
-
-Entities need to be Beans for JSON serializer.
-
 == (Maybe) upcoming
 
 image::future.png[canvas,size=contain]
@@ -395,7 +379,9 @@ upserts?
 
 === Spring Boot Support
 
-Outdated PoC: https://github.com/schauder/spring-data-jdbc-boot-starter
+https://github.com/spring-projects/spring-boot/issues/14489
+
+Is part of the `2.1.x` Milestone
 
 == Is there reactive support?
 
@@ -468,11 +454,11 @@ https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc[Github: [.small]#
 
 === Reactive Wrap up
 
-Lots is happening.
+Our current bets are or R2DBC.
 
-Many parties involved.
+We'll keep an eye on ADBA and will support it.
 
-Nothing that is production ready in the near future.
+There'll be probably some kind of support in on of the next releases.
 
 == References
 
@@ -483,7 +469,5 @@ Nothing that is production ready in the near future.
 * Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
 
 * Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
-
-* Freeletics: https://www.freeletics.com
 
 include::self.ad[leveloffset=1]
