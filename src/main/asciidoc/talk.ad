@@ -133,7 +133,7 @@ aka ORM
 ====
 You probably want to save an `Order` with it's `items` in one go.
 
-But
+But maybe not Authors with Books
 
 * We don't want to rebuild Hibernate.
 
@@ -147,10 +147,6 @@ I hated it at first.
 
 But by now I think it's actually quite nice.
 ====
-
-=== more Demo!
-
-Addresses vs PurchaseOrder
 
 == => No Many-to-X relations!
 
@@ -287,14 +283,14 @@ Just simple setting of created/modified timestamps and users
 include::{main-incl}Customer.java[tags=fields]
 ----
 
-=== Register `AuditAware`
+=== Register `AuditorAware`
 
 [source, java, indent=0, tabsize=2]
 ----
 include::{main-incl}CustomerConfig.java[tags=auditor]
 ----
 
-=== `AuditAware` example
+=== `AuditorAware` example
 
 [source, java, indent=0, tabsize=2]
 ----
@@ -304,12 +300,6 @@ include::{main-incl}ModifiableAuditorAware.java[tags=auditor]
 == MyBatis
 
 image::mybatis.png[canvas,size=contain]
-
-=== Thanks to
-
-**Kazuki Shimizu**
-
-kazuki43zoo
 
 == `@Query`
 
@@ -409,7 +399,7 @@ https://github.com/r2dbc[Github Orga: [.small]#https://github.com/r2dbc#]
 
 https://github.com/r2dbc/r2dbc-postgresql[Postgres [.small]#https://github.com/r2dbc/r2dbc-postgresql#]
 
-Planned: R2DBC over ADBA
+https://github.com/r2dbc/r2dbc-over-adba[R2DBC over ADBA [.small]#https://github.com/r2dbc/r2dbc-over-adba#]
 
 === R2DBC @ Spring Data
 
