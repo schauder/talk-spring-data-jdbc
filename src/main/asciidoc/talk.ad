@@ -1,8 +1,8 @@
 = Spring Data JDBC
 :icons: font
 :twitter-tag: @jensschauder
-:conference-tag: @JUG_DA
-:talk-tag: #sd-jdbc
+:conference-tag: #SpringOne
+:talk-tag: #sdJdbc
 :slide-link: http://bit.ly/talk-sd-jdbc
 :linkattrs:
 :main-incl: {src-incl}src/main/java/de/schauderhaft/talk/
