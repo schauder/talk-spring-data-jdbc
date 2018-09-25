@@ -15,14 +15,8 @@
  */
 package de.schauderhaft.demo;
 
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.data.repository.CrudRepository;
 
-/**
- * @author Jens Schauder
- */
-@SpringBootConfiguration
-@AutoConfigurationPackage
-public class DemoConfiguration {
+
+public interface CustomerRepository extends CrudRepository<Customer, Long> {
 }
