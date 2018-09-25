@@ -15,18 +15,29 @@
  */
 package de.schauderhaft.demo;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Jens Schauder
  */
 @RunWith(SpringRunner.class)
-@Transactional
-@ContextConfiguration(classes = DemoConfiguration.class)
+@DataJdbcTest()
 public class CustomRepositoryTests {
 
+	@Autowired
+	CustomerRepository repository;
+
+	@Test
+	public void test() {
+		Customer customer = new Customer();
+		customer.name = "Jens";
+
+		repository.save(customer);
+	}
 
 }
