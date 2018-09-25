@@ -336,9 +336,7 @@ upserts?
 
 === Spring Boot Support
 
-https://github.com/spring-projects/spring-boot/issues/14489
-
-Is part of the `2.1.x` Milestone
+Demo used Spring Boot 2.1.0.M4
 
 == Is there reactive support?
 

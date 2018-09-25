@@ -18,9 +18,10 @@ package de.schauderhaft.talk;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -32,8 +33,8 @@ import static org.assertj.core.api.Assertions.*;
  * @author Jens Schauder
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
-@ContextConfiguration(classes = CustomerConfig.class)
+@DataJdbcTest
+@Sql(scripts = "classpath:create-customer-schema.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, config = @SqlConfig(errorMode = SqlConfig.ErrorMode.IGNORE_FAILED_DROPS))
 public class CustomerRepositoryTest {
 
 	@Autowired

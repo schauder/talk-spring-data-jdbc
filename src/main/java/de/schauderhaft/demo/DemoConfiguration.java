@@ -17,7 +17,6 @@ package de.schauderhaft.demo;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationPackage;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * @author Jens Schauder

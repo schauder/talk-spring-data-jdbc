@@ -1,3 +1,7 @@
+drop table Customer;
+drop table address;
+drop table purchase_order;
+
 CREATE TABLE Customer (
   id         IDENTITY,
   first_name VARCHAR(200),
