@@ -11,20 +11,6 @@
 
 include::footer.ad[]
 
-{nbsp} +
-{nbsp} +
-
-[small]#Press S for speaker notes#
-
-== Talk Motto
-
-image::shame.png[canvas,size=contain]
-
-[quote, "Reid Hoffman"]
-____
-If you are not embarrassed by the first version of your product, you’ve launched too late.
-____
-
 === Spring Data
 
 image::spring-data.png[canvas,size=contain]
@@ -46,9 +32,7 @@ a.k.a Demo
 
 === You need
 
-* `NamedParameterJdbcOperations` Bean
-* `@EnableJdbcRepositories`
-* extend `JdbcConfiguration` for default stuff
+* `spring-boot-starter-data-jdbc`
 * Aggregate Roots need an `@Id`
 * No getters/setter required
 * You can "wither" instead
@@ -127,7 +111,11 @@ image::aggregate.png[canvas,size=contain]
 
 CRUD Operations for entities with references
 
-aka ORM
+=== more Demo
+
+=== One to N is fine
+
+But what about Many-to-X?
 
 [NOTE.speaker]
 ====
@@ -407,13 +395,17 @@ Reactive Relational Repositories.
 
 https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc[Github: [.small]#https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc#]
 
+https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc[Example: [.small]#https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc#]
+
 === Reactive Wrap up
 
 Our current bets are or R2DBC.
 
 We'll keep an eye on ADBA and will support it.
 
-There'll be probably some kind of support in on of the next releases.
+We aim for the time of the next releases.
+
+But not in the release train.
 
 == References
 
@@ -426,3 +418,11 @@ There'll be probably some kind of support in on of the next releases.
 * Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
 
 include::self.ad[leveloffset=1]
+
+== Questions
+
+I'll be outside the room for questions and discussions
+
+== Feedback
+
+Please use the app to rate this talk.
