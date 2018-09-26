@@ -16,16 +16,20 @@
 package de.schauderhaft.demo;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.util.Assert;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@Table("Book_Author")
 class Book {
 
 	private @Id
 	Long id;
+
 	private String title;
+
 	private Set<AuthorRef> authors = new HashSet<>();
 
 	public void addAuthor(Author author) {
