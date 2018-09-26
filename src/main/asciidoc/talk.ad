@@ -198,7 +198,7 @@ X must be another Aggregate Root.
 
 Everything referenced.
 
-=== What to do
+=== But Many-to-X is real!
 
 * Just reference an id.
 
@@ -210,6 +210,8 @@ In the database you might consider
 
 * deferred constraints.
 ====
+
+=== Let's look at code
 
 === Effects
 
@@ -399,7 +401,7 @@ https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc[E
 
 === Reactive Wrap up
 
-Our current bets are or R2DBC.
+Our current bets are on R2DBC.
 
 We'll keep an eye on ADBA and will support it.
 
