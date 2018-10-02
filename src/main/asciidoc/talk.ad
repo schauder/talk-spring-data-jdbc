@@ -1,7 +1,7 @@
 = Spring Data JDBC
 :icons: font
 :twitter-tag: @jensschauder
-:conference-tag: #SpringOne
+:conference-tag: @jugpaderborn
 :talk-tag: #sdJdbc
 :slide-link: http://bit.ly/talk-sd-jdbc
 :linkattrs:
@@ -399,15 +399,25 @@ https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc[Github: [.small]#
 
 https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc[Example: [.small]#https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc#]
 
-=== Reactive Wrap up
+=== Where is this heading?
 
-Our current bets are on R2DBC.
+[quote, "Ben Hale", Spring One Platform R2DBC talk]
+____
 
-We'll keep an eye on ADBA and will support it.
+ADBA might actually become [R2DBC], and to some extent that is the end goal of a project like this.
+____
 
-We aim for the time of the next releases.
+=== !
 
-But not in the release train.
+[quote, "Ben Hale", Spring One Platform R2DBC talk]
+____
+
+But make no mistake, I am not the sort of person who is going to tolerate the ADBA spec being bad.
+____
+
+=== !
+
+3 Implementations of R2DBC started with in a week after the announcement.
 
 == References
 
