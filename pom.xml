@@ -12,14 +12,11 @@
     <properties>
         <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <asciidoctor.maven.plugin.version>1.5.6</asciidoctor.maven.plugin.version>
-	    <!-- switching to 1.5.6 breaks background images -->
-        <asciidoctorj.version>1.5.5</asciidoctorj.version>
-        <jruby.version>1.7.26</jruby.version>
-        <revealjs.version>3.6.0</revealjs.version>
-        <!-- Use 'master' as version and remove the 'v' prefixing the download url to use the current snapshot version  -->
-	    <!-- switching to 1.1.x breaks conversion -->
-        <asciidoctor-revealjs.version>1.0.4</asciidoctor-revealjs.version>
+        <asciidoctor.maven.plugin.version>1.5.7.1</asciidoctor.maven.plugin.version>
+        <asciidoctorj.version>1.5.7</asciidoctorj.version>
+        <jruby.version>9.1.17.0</jruby.version>
+        <revealjs.version>3.7.0</revealjs.version>
+        <asciidoctor-revealjs.version>1.1.3</asciidoctor-revealjs.version>
         <theme.dir>${project.slides.directory}/theme</theme.dir>
     </properties>
 
@@ -29,7 +26,7 @@
             <plugin>
                 <groupId>com.googlecode.maven-download-plugin</groupId>
                 <artifactId>download-maven-plugin</artifactId>
-                <version>1.3.0</version>
+                <version>1.4.1</version>
                 <executions>
                     <execution>
                         <id>install-asciidoctor-revealjs</id>
@@ -93,7 +90,7 @@
                             <outputDirectory>${project.slides.directory}</outputDirectory>
                             <backend>revealjs</backend>
                             <templateDir>
-                                ${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates/slim
+                                ${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates
                             </templateDir>
                             <sourceHighlighter>coderay</sourceHighlighter>
                             <attributes>
@@ -118,7 +115,7 @@
             <plugin>
                 <groupId>nl.geodienstencentrum.maven</groupId>
                 <artifactId>sass-maven-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <id>update-template-stylesheets</id>
@@ -134,7 +131,7 @@
             </plugin>
 	        <plugin>
 		        <artifactId>maven-resources-plugin</artifactId>
-		        <version>3.0.2</version>
+		        <version>3.1.0</version>
 		        <executions>
 			        <execution>
 				        <id>copy-stylesheet-resources</id>
