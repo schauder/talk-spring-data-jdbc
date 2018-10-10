@@ -5,8 +5,8 @@
  * background pattern from https://subtlepatterns.com/skin-side-up/*
  */
 // Default mixins and settings -----------------
-@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/mixins.scss";
-@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/settings.scss";
+@import "../../../target/generated-slides/reveal.js-3.7.0/css/theme/template/mixins.scss";
+@import "../../../target/generated-slides/reveal.js-3.7.0/css/theme/template/settings.scss";
 // ---------------------------------------------
 // Include theme-specific fonts
 //@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Roboto:100,300|Roboto+Mono&subset=latin-ext');
@@ -96,7 +96,7 @@ $selectionBackgroundColor: $color-secondary-1;
 $selectionColor: $color-primary-0;
 
 // Theme template ------------------------------
-@import "../../../target/generated-slides/reveal.js-3.6.0/css/theme/template/theme";
+@import "../../../target/generated-slides/reveal.js-3.7.0/css/theme/template/theme";
 // ---------------------------------------------
 
 // some overrides after theme template import
@@ -221,4 +221,16 @@ section[data-background-size] .footer span {
   text-align: left;
   margin-bottom: 10px;
   font-size: 60%;
+}
+
+/*Fix background images*/
+.reveal section img {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/*Fix box code*/
+.reveal pre {
+  box-shadow: none;
 }
