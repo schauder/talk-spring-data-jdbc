@@ -26,7 +26,7 @@ class Book {
 	private @Id
 	Long id;
 
-	private String title;
+	String title;
 
 	private Set<AuthorRef> authors = new HashSet<>();
 
