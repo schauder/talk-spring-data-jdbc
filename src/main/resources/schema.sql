@@ -43,9 +43,9 @@ create TABLE Book (
 create TABLE Book_Author (
   book INTEGER,
   author INTEGER
-)
+);
 
 create table AUTHOR (
   id IDENTITY,
   name VARchar(200)
-)
+);
