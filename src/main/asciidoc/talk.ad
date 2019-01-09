@@ -304,7 +304,7 @@ include::{main-incl}CustomerRepository.java[tags=query]
 
 === `@Modifying`
 
-=== RowMapper
+=== RowMapper / ResultSetExtractor
 
 == (Maybe) upcoming
 
@@ -323,10 +323,6 @@ upserts?
 === Named Queries with MyBatis
 
 === Named Queries via Properties
-
-=== Spring Boot Support
-
-Demo used Spring Boot 2.1.0.M4
 
 == Is there reactive support?
 
