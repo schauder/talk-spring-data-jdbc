@@ -103,6 +103,17 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
 
 <script type="text/javascript">
     window.addEventListener("load", function() {
+    	Reveal.configure({
+          keyboard: {
+             39: 'next', // Right Arrow
+             37: 'prev'  // Left Arrow
+          }
+        });
+    } );
+</script>
+
+<script type="text/javascript">
+    window.addEventListener("load", function() {
 
         revealDiv = document.querySelector("body div.reveal")
         footer = document.getElementById("schauderhaft-footer");

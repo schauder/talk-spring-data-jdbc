@@ -340,14 +340,6 @@ The whole approach is opposite to reactive.
 
 **A**synchronous **D**ata**B**ase **A**pi being developed by Oracle
 
-https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false[Java One Slides: [small]#https://events.rainfocus.com/catalog/oracle/oow17/catalogjavaone17?search=CON1491&showEnrolled=false#]
-
-http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss[Mailing List: [.small]#http://mail.openjdk.java.net/mailman/listinfo/jdbc-spec-discuss#]
-
-http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes[Repository: [.small]#http://hg.openjdk.java.net/jdk/sandbox/file/JDK-8188051-branch/src/jdk.incubator.adba/share/classes#]
-
-https://github.com/pull-vert/adba-mirror[Mirror on github: [.small]#https://github.com/pull-vert/adba-mirror#]
-
 [NOTE.speaker]
 ====
 
@@ -365,8 +357,6 @@ Everybody is curious, I guess.
 
 An rudimentary implementation of ADBA based on JDBC.
 
-https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ[Repository [.small]#https://github.com/oracle/oracle-db-examples/tree/master/java/AoJ#]
-
 === R2DBC
 
 **R**eactive **R**elational **D**atabase **C**onnectivity
@@ -379,9 +369,15 @@ https://github.com/r2dbc[Github Orga: [.small]#https://github.com/r2dbc#]
  * jOOQ (Lukas Eder)
  * RxJava (Dávid Karnok)
 
-=== R2DBC Experimental Implementations
+=== R2DBC Implementations
 
 https://github.com/r2dbc/r2dbc-postgresql[Postgres [.small]#https://github.com/r2dbc/r2dbc-postgresql#]
+
+https://github.com/r2dbc/r2dbc-mssql[MS SQL Server [.small]#https://github.com/r2dbc/r2dbc-mssql#]
+
+https://github.com/r2dbc/r2dbc-h2[H2 [.small]#https://github.com/r2dbc/r2dbc-h2#]
+
+https://github.com/mirromutth/r2dbc-mysql[MySQL [.small]#https://github.com/mirromutth/r2dbc-mysql#]
 
 https://github.com/r2dbc/r2dbc-over-adba[R2DBC over ADBA [.small]#https://github.com/r2dbc/r2dbc-over-adba#]
 
@@ -391,9 +387,9 @@ Database Client inspired by Webclient.
 
 Reactive Relational Repositories.
 
-https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc[Github: [.small]#https://github.com/spring-projects/spring-data-jdbc/tree/r2dbc#]
+https://github.com/spring-projects/spring-data-r2dbc[Github: [.small]#https://github.com/spring-projects/spring-data-r2dbc#]
 
-https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc[Example: [.small]#https://github.com/spring-projects/spring-data-examples/tree/master/jdbc/r2dbc#]
+https://github.com/spring-projects/spring-data-examples/tree/master/r2dbc[Example: [.small]#https://github.com/spring-projects/spring-data-examples/tree/master/r2dbc#]
 
 === Where is this heading?
 
@@ -411,9 +407,7 @@ ____
 But make no mistake, I am not the sort of person who is going to tolerate the ADBA spec being bad.
 ____
 
-=== !
-
-3 Implementations of R2DBC started with in a week after the announcement.
+https://www.youtube.com/watch?v=idApf9DMdfk&feature=youtu.be&t=1855
 
 == References
 
