@@ -67,7 +67,7 @@ $color-secondary-2: #9CD975;
 $color-secondary-3: #4D941E;
 $color-secondary-4: #2C6D02;
 
-$backgroundColor: $color-primary-1;
+$backgroundColor: white;
 
 $codeBackground: $backgroundColor;
 
@@ -229,4 +229,8 @@ section[data-background-size] .footer span {
 /*Fix box code*/
 .reveal pre {
   box-shadow: none;
+}
+
+.reveal git .small {
+  font-size: 70%;
 }
