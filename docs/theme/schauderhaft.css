@@ -39,8 +39,8 @@
  * GLOBAL STYLES
  *********************************************/
 body {
-  background: #B5AAA2;
-  background-color: #B5AAA2;
+  background: white;
+  background-color: white;
 }
 
 .reveal {
@@ -347,7 +347,7 @@ body {
  *********************************************/
 @media print {
   .backgrounds {
-    background-color: #B5AAA2;
+    background-color: white;
   }
 }
 .reveal p {
@@ -365,7 +365,7 @@ body {
 }
 
 .reveal p code {
-  background-color: #B5AAA2;
+  background-color: white;
   background-image: none;
   display: inline-block;
   border-radius: 7px;
@@ -478,6 +478,10 @@ section[data-background-size] .footer span {
 /*Fix box code*/
 .reveal pre {
   box-shadow: none;
+}
+
+.reveal .small {
+  font-size: 70%;
 }
 
 /*# sourceMappingURL=schauderhaft.css.map */
