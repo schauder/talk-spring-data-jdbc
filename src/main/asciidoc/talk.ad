@@ -326,88 +326,9 @@ upserts?
 
 == Is there reactive support?
 
-=== The challenge
+=== Not in Spring Data JDBC
 
-=== JDBC is blocking
-
-Could be wrapped in a `ThreadPool` which would be a compromise.
-
-=== JPA won't happen
-
-The whole approach is opposite to reactive.
-
-=== ADBA
-
-**A**synchronous **D**ata**B**ase **A**pi being developed by Oracle
-
-[NOTE.speaker]
-====
-
-No visible feedback from other database vendors.
-
-Pushed back against reactive at first.
-Now it seems they changed their minds.
-
-Everybody is curious, I guess.
-====
-
-=== AoJ
-
-**A**DBA **o**ver **J**DBC
-
-An rudimentary implementation of ADBA based on JDBC.
-
-=== R2DBC
-
-**R**eactive **R**elational **D**atabase **C**onnectivity
-
-https://github.com/r2dbc[Github Orga: [.small]#https://github.com/r2dbc#]
-
-=== R2DBC Contributers
-
- * Pivotal (Spring, Spring Data, Reactor)
- * jOOQ (Lukas Eder)
- * RxJava (Dávid Karnok)
-
-=== R2DBC Implementations
-
-https://github.com/r2dbc/r2dbc-postgresql[Postgres [.small]#https://github.com/r2dbc/r2dbc-postgresql#]
-
-https://github.com/r2dbc/r2dbc-mssql[MS SQL Server [.small]#https://github.com/r2dbc/r2dbc-mssql#]
-
-https://github.com/r2dbc/r2dbc-h2[H2 [.small]#https://github.com/r2dbc/r2dbc-h2#]
-
-https://github.com/mirromutth/r2dbc-mysql[MySQL [.small]#https://github.com/mirromutth/r2dbc-mysql#]
-
-https://github.com/r2dbc/r2dbc-over-adba[R2DBC over ADBA [.small]#https://github.com/r2dbc/r2dbc-over-adba#]
-
-=== R2DBC @ Spring Data
-
-Database Client inspired by Webclient.
-
-Reactive Relational Repositories.
-
-https://github.com/spring-projects/spring-data-r2dbc[Github: [.small]#https://github.com/spring-projects/spring-data-r2dbc#]
-
-https://github.com/spring-projects/spring-data-examples/tree/master/r2dbc[Example: [.small]#https://github.com/spring-projects/spring-data-examples/tree/master/r2dbc#]
-
-=== Where is this heading?
-
-[quote, "Ben Hale", Spring One Platform R2DBC talk]
-____
-
-ADBA might actually become [R2DBC], and to some extent that is the end goal of a project like this.
-____
-
-=== !
-
-[quote, "Ben Hale", Spring One Platform R2DBC talk]
-____
-
-But make no mistake, I am not the sort of person who is going to tolerate the ADBA spec being bad.
-____
-
-https://www.youtube.com/watch?v=idApf9DMdfk&feature=youtu.be&t=1855
+But in Spring Data R2DBC (not GA yet)
 
 == References
 
@@ -418,6 +339,17 @@ https://www.youtube.com/watch?v=idApf9DMdfk&feature=youtu.be&t=1855
 * Examples: https://github.com/spring-projects/spring-data-examples/tree/master/jdbc
 
 * Slides on Github: https://github.com/schauder/talk-spring-data-jdbc
+
+
+== More References
+
+* Blog article 1: https://spring.io/blog/2018/09/17/introducing-spring-data-jdbc
+
+* Blog article 2: https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates
+
+* R2DBC: https://r2dbc.io/
+
+* Spring Data R2DBC: https://spring.io/projects/spring-data-r2dbc
 
 include::self.ad[leveloffset=1]
 
