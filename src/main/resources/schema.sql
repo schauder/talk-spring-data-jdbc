@@ -10,7 +10,6 @@ CREATE TABLE Customer (
 create TABLE Address (
   customer     INTEGER,
   customer_key VARCHAR(200),
-  Street       VARCHAR(200),
   city         VARCHAR(200)
 );
 

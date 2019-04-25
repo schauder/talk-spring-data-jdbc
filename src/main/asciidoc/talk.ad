@@ -241,7 +241,7 @@ Beware there are events with the same name in Spring Data Rest
 === `AggregateChange`
 
 * A model of the changes to be applied to the database
-* contains a **mutable** list of `DbAction` s.
+* contains a list of `DbAction` s.
 
 === `DbAction`
 
@@ -251,7 +251,6 @@ Represents a single SQL statement to be executed against the database.
 
 * Access the repository
 * change the entities
-* **Change** the `AggregateChange`!
 
 == Auditing
 
