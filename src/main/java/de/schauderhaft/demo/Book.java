@@ -30,7 +30,11 @@ class Book {
 
 	private Set<AuthorRef> authors = new HashSet<>();
 
-	public void addAuthor(Author author) {
+	Book(String title) {
+		this.title = title;
+	}
+
+	void addAuthor(Author author) {
 		authors.add(createAuthorRef(author));
 	}
 

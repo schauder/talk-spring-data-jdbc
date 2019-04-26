@@ -40,17 +40,14 @@ public class BookAndAuthorsTests {
 	@Test
 	public void createAuthorsAndBooks() {
 
-		Author tolkien = new Author();
-		tolkien.name = "J.R.R. Tolkien";
+		Author tolkien = new Author("J.R.R. Tolkien");
 
 		tolkien = authors.save(tolkien);
 
-		Book lordOfTheRings = new Book();
-		lordOfTheRings.title = "Lord of the Rings";
+		Book lordOfTheRings = new Book("Lord of the Rings");
 		lordOfTheRings.addAuthor(tolkien);
 
-		Book simarillion = new Book();
-		simarillion.title = "Simarillion";
+		Book simarillion = new Book("Simarillion");
 		simarillion.addAuthor(tolkien);
 
 		books.saveAll(asList(lordOfTheRings, simarillion));
@@ -63,5 +60,8 @@ public class BookAndAuthorsTests {
 		assertThat(books.count()).isEqualTo(1);
 		assertThat(authors.count()).isEqualTo(1);
 
+
+		Iterable<Book> allBooks = books.findAll();
+		assertThat(allBooks).extracting(b -> b.title).containsExactly("Lord of the Rings");
 	}
 }
