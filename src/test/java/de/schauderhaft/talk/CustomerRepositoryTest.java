@@ -135,6 +135,7 @@ public class CustomerRepositoryTest {
 
 	@Test
 	public void purchaseOrder() {
+
 		Customer customer = customerRepo.save(createCustomer());
 		PurchaseOrder po1 = new PurchaseOrder();
 		po1.customerRef = customer.id;
