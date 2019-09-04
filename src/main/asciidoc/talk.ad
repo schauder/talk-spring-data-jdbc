@@ -30,6 +30,15 @@ image::spring-data.png[canvas,size=contain]
 
 a.k.a Demo
 
+[NOTE.speaker]
+====
+create a Customer class in the `talk` subpackage
+with ID and
+name
+dob
+gender (enum).
+====
+
 === You need
 
 * `spring-boot-starter-data-jdbc`
@@ -92,6 +101,12 @@ Complexity is tempting
 
 a.k.a more demo code
 
+[NOTE.speaker]
+====
+Copy an instance by resetting id to `null`.
+Load an instance twice.
+====
+
 === !
 
 * Clone: set ID to `null` and save again.
@@ -112,6 +127,11 @@ image::aggregate.png[canvas,size=contain]
 CRUD Operations for entities with references
 
 === more Demo
+
+[NOTE.speaker]
+====
+add `addresses` `Map<String, Address>`
+====
 
 === One to N is fine
 
@@ -221,21 +241,24 @@ In the database you might consider
 
 * Allows to pick a persistence strategy per Aggregate
 
-== Events
+== Callbacks & Events
 
 image::event.png[canvas,size=contain]
 
-=== Available Events
+=== Available Callbacks & Events
 
-* `BeforeSaveEvent`
-* `AfterSaveEvent`
-* `BeforeDeleteEvent`
-* `AfterDeleteEvent`
-* `AfterLoadEvent` - when an Aggregate got instantiated from the database
+* `BeforeConvertCallback`
+* `BeforeSaveCallback`
+* `AfterSaveCallback`
+* `BeforeDeleteCallback`
+* `AfterDeleteCallback`
+* `AfterLoadEvent`
 
 [NOTE.speaker]
 ====
 Beware there are events with the same name in Spring Data Rest
+
+Prefer Callbacks over events the later don't guarantee execution order ==> Never ending fun when used to mutate entities. Also don't work with immutables.
 ====
 
 === `AggregateChange`
@@ -323,12 +346,6 @@ upserts?
 
 === Named Queries via Properties
 
-== Is there reactive support?
-
-=== Not in Spring Data JDBC
-
-But in Spring Data R2DBC (not GA yet)
-
 == References
 
 * Github: https://github.com/spring-projects/spring-data-jdbc
@@ -345,10 +362,6 @@ But in Spring Data R2DBC (not GA yet)
 * Blog article 1: https://spring.io/blog/2018/09/17/introducing-spring-data-jdbc
 
 * Blog article 2: https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates
-
-* R2DBC: https://r2dbc.io/
-
-* Spring Data R2DBC: https://spring.io/projects/spring-data-r2dbc
 
 include::self.ad[leveloffset=1]
 

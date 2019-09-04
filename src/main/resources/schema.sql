@@ -7,6 +7,24 @@ CREATE TABLE Customer (
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 create TABLE Address (
   customer     INTEGER,
   customer_key VARCHAR(200),
