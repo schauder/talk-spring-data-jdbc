@@ -1,5 +1,5 @@
 CREATE TABLE Customer (
-  id     IDENTITY,
+  id     IDENTITY PRIMARY KEY,
   name   VARCHAR(200),
   dob    DATE,
   gender VARCHAR(200)
@@ -28,9 +28,12 @@ CREATE TABLE Customer (
 create TABLE Address (
   customer     INTEGER,
   customer_key VARCHAR(200),
-  city         VARCHAR(200)
+  city         VARCHAR(200),
+  PRIMARY KEY (customer, customer_key)
 );
 
+ALTER TABLE Address
+ADD CONSTRAINT FK_ADDRESS_CUSTOMER FOREIGN KEY (customer) REFERENCES Customer (ID);
 
 
 
